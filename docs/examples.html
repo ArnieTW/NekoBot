@@ -64,7 +64,7 @@
                         <li>Enable a TTS model from TTS Setup.</li>
                         <li>In Overlay Setup, add a TTS source.</li>
                         <li>Select the first available voice or a cloned voice.</li>
-                        <li>Set Message to <code>{{message.text}}</code>.</li>
+                        <li>Set Message to <code>{{message.text}}</code>. For Streamer.bot command triggers, this is the text supplied with the command.</li>
                         <li>Bind the box to a command trigger such as <code>!tts</code>.</li>
                     </ol>
                 </section>
@@ -82,11 +82,19 @@
                 <section class="panel example">
                     <h2>Use Trigger Tokens</h2>
                     <p>Any field with the trigger-token help marker supports autocomplete. Type <code>{{</code> to open suggestions, keep typing to filter, then choose a token.</p>
-                    <ul>
-                        <li><code>{{user.display}}</code> for the visible display name.</li>
-                        <li><code>{{message.text}}</code> for chat text.</li>
-                        <li><code>{{custom["key"]}}</code> for custom trigger variables.</li>
-                    </ul>
+                    <div class="token-table" role="table" aria-label="Common trigger tokens">
+                        <div role="row"><strong role="cell">Token</strong><strong role="cell">Use</strong></div>
+                        <div role="row"><code role="cell">{{user.display}}</code><span role="cell">Viewer display name.</span></div>
+                        <div role="row"><code role="cell">{{message.text}}</code><span role="cell">Chat message text, or the message text attached to a command trigger.</span></div>
+                        <div role="row"><code role="cell">{{text}}</code><span role="cell">Short alias for message text.</span></div>
+                        <div role="row"><code role="cell">{{command.name}}</code><span role="cell">Command name selected by Streamer.bot.</span></div>
+                        <div role="row"><code role="cell">{{command.fullCommand}}</code><span role="cell">Full command text, when Streamer.bot provides it.</span></div>
+                        <div role="row"><code role="cell">{{command.counter}}</code><span role="cell">Total command-use counter.</span></div>
+                        <div role="row"><code role="cell">{{command.userCounter}}</code><span role="cell">Command-use counter for the current viewer.</span></div>
+                        <div role="row"><code role="cell">{{channel.platform}}</code><span role="cell">Twitch, Kick, YouTube, or the platform supplied by the trigger.</span></div>
+                        <div role="row"><code role="cell">{{custom["key"]}}</code><span role="cell">A custom trigger value. Replace <code>key</code> with the custom variable name.</span></div>
+                    </div>
+                    <p>Autocomplete is the safest way to insert tokens because NekoBot stores the real token key while displaying a readable label chip.</p>
                 </section>
             </article>
         </main>

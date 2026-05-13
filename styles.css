@@ -283,6 +283,28 @@ li {
     gap: 10px;
 }
 
+.token-table {
+    display: grid;
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--line);
+}
+
+.token-table > div {
+    display: grid;
+    grid-template-columns: minmax(190px, .55fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+    padding: 10px 12px;
+    background: #0f172a;
+}
+
+.token-table > div:first-child {
+    background: var(--panel-soft);
+}
+
 .footer {
     padding: 36px 0;
     color: var(--muted);
@@ -310,5 +332,10 @@ code {
 
     .docs-nav {
         position: static;
+    }
+
+    .token-table > div {
+        grid-template-columns: 1fr;
+        gap: 6px;
     }
 }
