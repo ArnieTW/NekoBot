@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Streamer.bot - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="./">Documentation</a>
+                <a href="../releases/">Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="docs-nav" aria-label="Documentation navigation">
+                <a href="./">Overview</a>
+                <a href="./download-install.html">Download & Install</a>
+                <a href="./overlay-setup.html">Overlay Setup</a>
+                <a class="active" href="./streamerbot.html">Streamer.bot</a>
+                <a href="./tts.html">TTS Setup</a>
+                <a href="./examples.html">Examples</a>
+                <a href="./troubleshooting.html">Troubleshooting</a>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">Integration</p>
+                    <h1>Streamer.bot Setup</h1>
+                    <p class="lead">Streamer.bot provides the events that NekoBot can bind to overlay boxes.</p>
+                </section>
+
+                <section class="panel">
+                    <h2>Connection</h2>
+                    <img class="screenshot" src="../assets/screenshots/streamerbot-setup.png" alt="Streamer.bot setup page" />
+                    <ol class="step-list">
+                        <li>Enable the Streamer.bot WebSocket server.</li>
+                        <li>Open NekoBot setup and choose Streamer.bot setup.</li>
+                        <li>Enter the host, port, and password if configured.</li>
+                        <li>Connect and subscribe to the event groups you want to use.</li>
+                    </ol>
+                </section>
+
+                <section class="panel">
+                    <h2>Triggers</h2>
+                    <p>Triggers can represent raw subscribed events, commands, or actions. Use Overlay Setup to bind a trigger to a box.</p>
+                    <ul>
+                        <li>Use chat-message triggers for regular chat overlays.</li>
+                        <li>Use command triggers for commands such as <code>!tts</code> or <code>!clip</code>.</li>
+                        <li>Use action triggers when Streamer.bot actions should drive an overlay.</li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

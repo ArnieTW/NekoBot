@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TTS Setup - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="./">Documentation</a>
+                <a href="../releases/">Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="docs-nav" aria-label="Documentation navigation">
+                <a href="./">Overview</a>
+                <a href="./download-install.html">Download & Install</a>
+                <a href="./overlay-setup.html">Overlay Setup</a>
+                <a href="./streamerbot.html">Streamer.bot</a>
+                <a class="active" href="./tts.html">TTS Setup</a>
+                <a href="./examples.html">Examples</a>
+                <a href="./troubleshooting.html">Troubleshooting</a>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">Voice</p>
+                    <h1>TTS Setup</h1>
+                    <p class="lead">NekoBot can use local TTS models for generated voice sources when enabled.</p>
+                </section>
+
+                <section class="panel">
+                    <h2>Model Setup</h2>
+                    <img class="screenshot" src="../assets/screenshots/tts-setup.png" alt="TTS setup page" />
+                    <ol class="step-list">
+                        <li>Open TTS Setup.</li>
+                        <li>Enable a model.</li>
+                        <li>Choose backend settings such as CPU or CUDA.</li>
+                        <li>Use Test or Clone/Test to verify voices.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Example: TTS Source From Chat</h2>
+                    <ol class="step-list">
+                        <li>Enable a TTS model and verify that it is running.</li>
+                        <li>In Overlay Setup, add a TTS source to a box.</li>
+                        <li>Select a voice and set Message to <code>{{message.text}}</code>.</li>
+                        <li>Bind the box to a command trigger such as <code>!tts</code>.</li>
+                        <li>When the command arrives, NekoBot resolves the trigger tokens and generates the audio source.</li>
+                    </ol>
+                </section>
+
+                <section class="panel notice">
+                    <h3>Acknowledgement</h3>
+                    <p>TTS support is powered by CosyVoice. Please cite and acknowledge the CosyVoice project when sharing generated work or publishing results.</p>
+                </section>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

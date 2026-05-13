@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Overlay Setup - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="./">Documentation</a>
+                <a href="../releases/">Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="docs-nav" aria-label="Documentation navigation">
+                <a href="./">Overview</a>
+                <a href="./download-install.html">Download & Install</a>
+                <a class="active" href="./overlay-setup.html">Overlay Setup</a>
+                <a href="./streamerbot.html">Streamer.bot</a>
+                <a href="./tts.html">TTS Setup</a>
+                <a href="./examples.html">Examples</a>
+                <a href="./troubleshooting.html">Troubleshooting</a>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">Overlays</p>
+                    <h1>Overlay Setup</h1>
+                    <p class="lead">Overlays define where boxes live, how they look, and what sources can be shown when triggers arrive.</p>
+                </section>
+
+                <section class="panel">
+                    <h2>Basic Flow</h2>
+                    <img class="screenshot" src="../assets/screenshots/overlay-setup.png" alt="Overlay setup page" />
+                    <ol class="step-list">
+                        <li>Create a new overlay.</li>
+                        <li>Add boxes to reserve screen space.</li>
+                        <li>Add sources such as text, media, URL, or TTS.</li>
+                        <li>Bind triggers to boxes.</li>
+                        <li>Copy the overlay URL into OBS as a browser source.</li>
+                    </ol>
+                </section>
+
+                <section class="panel">
+                    <h2>Viewer</h2>
+                    <img class="screenshot" src="../assets/screenshots/open-overlay.png" alt="Open Overlay viewer page" />
+                    <p>The Open Overlay page lets you choose an overlay and preview the actual viewer. OBS should use the copied overlay URL for the layout you want to show.</p>
+                </section>
+
+                <section class="panel example">
+                    <h2>Example: Add a Chat Message Box</h2>
+                    <ol class="step-list">
+                        <li>Create or select an overlay.</li>
+                        <li>Click <code>Add box</code> and position the box on the stream preview.</li>
+                        <li>Add a Text source with a message like <code>{{message.text}}</code>.</li>
+                        <li>Open Trigger and add a chat-message trigger.</li>
+                        <li>Save the overlay and copy the OBS URL.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Example: Multi-Source Rotation</h2>
+                    <p>For boxes with more than one source, use source trigger mode to decide which source appears.</p>
+                    <ul>
+                        <li><code>Random</code> picks one source while avoiding the same source twice in a row when possible.</li>
+                        <li><code>Sequence</code> moves through the source list and wraps around at the end.</li>
+                        <li><code>Custom</code> evaluates rules against trigger values and chooses the matching source.</li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

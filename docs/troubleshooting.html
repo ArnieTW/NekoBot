@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Troubleshooting - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="./">Documentation</a>
+                <a href="../releases/">Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="docs-nav" aria-label="Documentation navigation">
+                <a href="./">Overview</a>
+                <a href="./download-install.html">Download & Install</a>
+                <a href="./overlay-setup.html">Overlay Setup</a>
+                <a href="./streamerbot.html">Streamer.bot</a>
+                <a href="./tts.html">TTS Setup</a>
+                <a href="./examples.html">Examples</a>
+                <a class="active" href="./troubleshooting.html">Troubleshooting</a>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">Help</p>
+                    <h1>Troubleshooting</h1>
+                    <p class="lead">Start with the local Settings page and logs when something is not behaving as expected.</p>
+                </section>
+
+                <section class="panel">
+                    <h2>Common Checks</h2>
+                    <img class="screenshot" src="../assets/screenshots/settings.png" alt="Settings and log viewer page" />
+                    <ul>
+                        <li>Confirm NekoBot is running in the tray.</li>
+                        <li>Confirm the setup page opens from the tray menu.</li>
+                        <li>Check that Streamer.bot is connected before testing triggers.</li>
+                        <li>Use the Open Overlay page to confirm the overlay viewer loads.</li>
+                        <li>Open Settings to inspect logs for errors.</li>
+                    </ul>
+                </section>
+
+                <section class="panel">
+                    <h2>Sources</h2>
+                    <p>If a source is missing, open Manage Sources and confirm that it exists, is cached when needed, and is still referenced by the expected boxes.</p>
+                    <img class="screenshot" src="../assets/screenshots/manage-sources.png" alt="Manage Sources page" />
+                </section>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

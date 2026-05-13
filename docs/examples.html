@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Examples - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="./">Documentation</a>
+                <a href="../releases/">Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="docs-nav" aria-label="Documentation navigation">
+                <a href="./">Overview</a>
+                <a href="./download-install.html">Download & Install</a>
+                <a href="./overlay-setup.html">Overlay Setup</a>
+                <a href="./streamerbot.html">Streamer.bot</a>
+                <a href="./tts.html">TTS Setup</a>
+                <a class="active" href="./examples.html">Examples</a>
+                <a href="./troubleshooting.html">Troubleshooting</a>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">Recipes</p>
+                    <h1>Setup Examples</h1>
+                    <p class="lead">These examples describe common first overlays without exposing internal implementation details.</p>
+                </section>
+
+                <section class="panel example">
+                    <h2>Show Chat Text On Stream</h2>
+                    <ol class="step-list">
+                        <li>Open Overlay Setup and create an overlay.</li>
+                        <li>Add a box and position it where chat text should appear.</li>
+                        <li>Add a Text source.</li>
+                        <li>Set the text to <code>{{user.display}}: {{message.text}}</code>.</li>
+                        <li>Add a chat-message trigger and leave Ignore commands enabled if commands should not appear.</li>
+                        <li>Save the overlay and open it in OBS as a browser source.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Play A Media Clip From A Command</h2>
+                    <ol class="step-list">
+                        <li>Create or select an overlay.</li>
+                        <li>Add a box sized for the media clip.</li>
+                        <li>Add a Media source using a file or URL.</li>
+                        <li>Use Timer mode so the clip hides after playback.</li>
+                        <li>Add a command trigger such as <code>!hype</code>.</li>
+                        <li>Save and test the command from chat.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Read A Message With TTS</h2>
+                    <ol class="step-list">
+                        <li>Enable a TTS model from TTS Setup.</li>
+                        <li>In Overlay Setup, add a TTS source.</li>
+                        <li>Select the first available voice or a cloned voice.</li>
+                        <li>Set Message to <code>{{message.text}}</code>.</li>
+                        <li>Bind the box to a command trigger such as <code>!tts</code>.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Pick A Random Source</h2>
+                    <ol class="step-list">
+                        <li>Add multiple sources to a box.</li>
+                        <li>Set the box source trigger mode to <code>Random</code>.</li>
+                        <li>Bind a trigger to the box.</li>
+                        <li>Each trigger will choose one source, avoiding the previous choice when possible.</li>
+                    </ol>
+                </section>
+
+                <section class="panel example">
+                    <h2>Use Trigger Tokens</h2>
+                    <p>Any field with the trigger-token help marker supports autocomplete. Type <code>{{</code> to open suggestions, keep typing to filter, then choose a token.</p>
+                    <ul>
+                        <li><code>{{user.display}}</code> for the visible display name.</li>
+                        <li><code>{{message.text}}</code> for chat text.</li>
+                        <li><code>{{custom["key"]}}</code> for custom trigger variables.</li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+</body>
+</html>
