@@ -9,33 +9,34 @@
 <body>
     <div class="page">
         <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
             <div class="nav-links">
-                <a href="../docs/">Documentation</a>
-                <a href="./">Releases</a>
+                <a href="../docs/index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
             </div>
         </nav>
 
         <main class="section doc-content">
             <section>
                 <p class="kicker">Downloads</p>
-                <h1>Releases</h1>
-                <p class="lead">Download NekoBot builds from GitHub Releases. Release binaries are hosted there so this public page stays documentation-only.</p>
+                <h1>GitHub Releases</h1>
+                <p class="lead">Download NekoBot builds, checksums, and release notes from GitHub Releases.</p>
             </section>
 
             <section class="release-list">
                 <article class="panel release-card">
                     <div>
-                        <h2>Latest Release</h2>
-                        <p class="meta">Windows package · Replace this link with your public GitHub release URL.</p>
+                        <h2 data-release-title>Latest Release</h2>
+                        <p class="meta" data-release-meta>Loading GitHub release details...</p>
                     </div>
-                    <a class="button primary" href="https://github.com/ArnieTW/NekoBot/releases/latest">Download</a>
+                    <a class="button primary" href="https://github.com/ArnieTW/NekoBot/releases/latest" data-release-download>Download</a>
                 </article>
 
                 <article class="panel release-card">
                     <div>
                         <h2>All Releases</h2>
-                        <p class="meta">Older builds, checksums, and release notes.</p>
+                        <p class="meta">Older builds, checksums, and release notes on GitHub.</p>
                     </div>
                     <a class="button" href="https://github.com/ArnieTW/NekoBot/releases">View releases</a>
                 </article>
@@ -43,9 +44,13 @@
 
             <section class="panel notice">
                 <h3>Release Notes</h3>
-                <p>Add release notes to each GitHub Release. Keep this site focused on download links and documentation.</p>
+                <div class="release-notes" data-release-changelog>
+                    <p>Loading the current changelog from GitHub Releases.</p>
+                </div>
+                <p class="meta" data-release-status></p>
             </section>
         </main>
     </div>
+    <script src="../release.js"></script>
 </body>
 </html>

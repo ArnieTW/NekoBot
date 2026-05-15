@@ -9,71 +9,167 @@
 <body>
     <div class="page">
         <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
             <div class="nav-links">
-                <a href="./">Documentation</a>
-                <a href="../releases/">Releases</a>
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
             </div>
         </nav>
 
         <main class="docs-layout">
-            <aside class="docs-nav" aria-label="Documentation navigation">
-                <a href="./">Overview</a>
-                <a href="./download-install.html">Download & Install</a>
-                <a class="active" href="./overlay-setup.html">Overlay Setup</a>
-                <a href="./streamerbot.html">Streamer.bot</a>
-                <a href="./tts.html">TTS Setup</a>
-                <a href="./examples.html">Examples</a>
-                <a href="./troubleshooting.html">Troubleshooting</a>
+            <aside class="tree-nav" aria-label="Documentation navigation">
+                <nav class="tree-control" aria-label="Documentation tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item active" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item nested active" href="#how-overlays-work">How overlays work</a>
+                        <a class="tree-item nested" href="#page-controls">Page controls</a>
+                        <a class="tree-item nested" href="#stage-boxes">Stage and boxes</a>
+                        <a class="tree-item nested" href="#sources">Sources</a>
+                        <a class="tree-item nested" href="#triggers">Triggers</a>
+                        <a class="tree-item nested" href="#source-rotation">Source rotation</a>
+                        <a class="tree-item nested" href="#obs-viewer">OBS viewer</a>
+                        <a class="tree-item nested" href="#troubleshooting">Troubleshooting</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item" href="settings.html">Settings</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
+                        <a class="tree-item" href="examples.html#media-command">Media command</a>
+                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
+                        <a class="tree-item" href="examples.html#random-source">Random source</a>
+                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
             </aside>
 
             <article class="doc-content">
                 <section>
                     <p class="kicker">Overlays</p>
                     <h1>Overlay Setup</h1>
-                    <p class="lead">Overlays define where boxes live, how they look, and what sources can be shown when triggers arrive.</p>
+                    <p class="lead">Overlays define the full-scene browser layer, the boxes inside it, and the sources each box can show when triggers arrive.</p>
                 </section>
 
-                <section class="panel">
-                    <h2>Basic Flow</h2>
+                <section class="panel" id="how-overlays-work">
+                    <h2>How Overlays Work</h2>
+                    <p>Create one overlay for the stream scene, then add that overlay to OBS as a browser source that covers the whole scene. The overlay itself acts like a transparent stage on top of your stream.</p>
+                    <p>Inside that overlay, create multiple boxes. Each box reserves a position on the stream and can react to its own triggers. This is the pattern you want for different memes, audio and video cues, chat callouts, alerts, TTS responses, and other stream effects.</p>
+                    <p>Instead of adding a separate browser source for every meme or cue, keep one full-scene NekoBot overlay in OBS and let NekoBot decide which box appears when a trigger fires.</p>
+                </section>
+
+                <section class="panel" id="page-controls">
+                    <h2>Page Controls</h2>
                     <img class="screenshot" src="../assets/screenshots/overlay-setup.png" alt="Overlay setup page" />
-                    <ol class="step-list">
-                        <li>Create a new overlay.</li>
-                        <li>Add boxes to reserve screen space.</li>
-                        <li>Add sources such as text, media, URL, or TTS.</li>
-                        <li>Bind triggers to boxes.</li>
-                        <li>Copy the overlay URL into OBS as a browser source.</li>
-                    </ol>
+                    <p>Overlay Setup is the main landing page for stream layout work. Use it when you need to create an overlay, arrange boxes, connect sources, bind triggers, and copy the OBS URL.</p>
+                    <div class="token-table" role="table" aria-label="Overlay setup page controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it does</strong></div>
+                        <div role="row"><code role="cell">Select saved overlay...</code><span role="cell">Loads an existing overlay into the editor. The selected overlay owns the stage, boxes, sources, trigger bindings, default status, and OBS URL.</span></div>
+                        <div role="row"><code role="cell">New overlay</code><span role="cell">Creates a blank overlay definition. Use this for a new OBS scene layout, such as gameplay, chatting, or BRB.</span></div>
+                        <div role="row"><code role="cell">Open Overlay</code><span role="cell">Opens the viewer page that OBS renders. This is useful for previewing the actual transparent overlay outside the setup editor.</span></div>
+                        <div role="row"><code role="cell">Refresh</code><span role="cell">Reloads the saved overlay list when another browser tab or setup action changed overlays.</span></div>
+                        <div role="row"><code role="cell">Name</code><span role="cell">The saved overlay name. Name it after the OBS scene or layout it belongs to.</span></div>
+                        <div role="row"><code role="cell">Add box</code><span role="cell">Adds a positioned region inside the overlay. After creating a box, select it to open the <a href="component-box.html">Box</a> inspector.</span></div>
+                        <div role="row"><code role="cell">Save</code><span role="cell">Writes the overlay definition to disk. Save after moving boxes, changing sources, editing triggers, or renaming the overlay.</span></div>
+                        <div role="row"><code role="cell">Copy OBS URL</code><span role="cell">Copies the browser-source URL for the selected overlay. Paste this into OBS as a full-scene Browser Source.</span></div>
+                        <div role="row"><code role="cell">Set Default</code><span role="cell">Makes this overlay the default viewer target when no overlay id is provided.</span></div>
+                        <div role="row"><code role="cell">Delete overlay</code><span role="cell">Removes the saved overlay after confirmation. This deletes the layout and all boxes inside it.</span></div>
+                    </div>
                 </section>
 
-                <section class="panel">
-                    <h2>Viewer</h2>
-                    <img class="screenshot" src="../assets/screenshots/open-overlay.png" alt="Open Overlay viewer page" />
-                    <p>The Open Overlay page lets you choose an overlay and preview the actual viewer. OBS should use the copied overlay URL for the layout you want to show.</p>
+                <section class="panel" id="stage-boxes">
+                    <h2>Stage And Boxes</h2>
+                    <img class="screenshot" src="../assets/screenshots/overlay-box-inspector.png" alt="Overlay setup inspector" />
+                    <p>The setup stage is a 16:9 editor for placing boxes relative to the stream scene. Drag and resize boxes on the stage, then use the inspector to fine tune the selected item.</p>
+                    <div class="token-table" role="table" aria-label="Stage and box controls">
+                        <div role="row"><strong role="cell">Area</strong><strong role="cell">Usage</strong></div>
+                        <div role="row"><code role="cell">Stream preview</code><span role="cell">The setup background image. It helps you position boxes against a scene mockup; it is not rendered to viewers.</span></div>
+                        <div role="row"><code role="cell">Box on stage</code><span role="cell">Drag to move it, resize to fit the visual effect, then select it to edit box options. A box can hold one source or several possible sources.</span></div>
+                        <div role="row"><code role="cell">Box inspector</code><span role="cell">Edits general settings, layout, appearance, trigger bindings, and source list for the selected box.</span></div>
+                        <div role="row"><code role="cell">Stream Preview Inspector</code><span role="cell">Click empty space on the preview to edit overlay-level preview settings instead of a box.</span></div>
+                    </div>
                 </section>
 
-                <section class="panel example">
-                    <h2>Example: Add a Chat Message Box</h2>
-                    <ol class="step-list">
-                        <li>Create or select an overlay.</li>
-                        <li>Click <code>Add box</code> and position the box on the stream preview.</li>
-                        <li>Add a Text source with a message like <code>{{message.text}}</code>.</li>
-                        <li>Open Trigger and add a chat-message trigger.</li>
-                        <li>Save the overlay and copy the OBS URL.</li>
-                    </ol>
+                <section class="panel" id="sources">
+                    <h2>Sources</h2>
+                    <p>Sources are the actual content shown by a box. A source can be reused, edited, and selected by triggers.</p>
+                    <div class="token-table" role="table" aria-label="Overlay source types">
+                        <div role="row"><strong role="cell">Source type</strong><strong role="cell">Use</strong></div>
+                        <div role="row"><code role="cell">Defined Source</code><span role="cell">Reuse an existing source from the source library.</span></div>
+                        <div role="row"><code role="cell">Text Source</code><span role="cell">Show static text or trigger-token text such as <code>{{message.text}}</code>.</span></div>
+                        <div role="row"><code role="cell">Media Source</code><span role="cell">Show or play uploaded files and URLs such as images, GIFs, videos, and audio.</span></div>
+                        <div role="row"><code role="cell">URL Source</code><span role="cell">Embed a webpage or browser-rendered URL in the box.</span></div>
+                        <div role="row"><code role="cell">TTS Source</code><span role="cell">Generate speech from text using an enabled TTS model and selected voice.</span></div>
+                    </div>
+                    <p>Create and edit sources through the <a href="component-add-source-dialog.html">Add Source Dialog</a>. For media sources, use trigger mode settings to decide whether the source hides after a timer or stays visible until toggled.</p>
                 </section>
 
-                <section class="panel example">
-                    <h2>Example: Multi-Source Rotation</h2>
-                    <p>For boxes with more than one source, use source trigger mode to decide which source appears.</p>
+                <section class="panel" id="triggers">
+                    <h2>Triggers</h2>
+                    <p>Triggers decide when a box runs. After connecting Streamer.bot, NekoBot can bind chat messages, commands, actions, or raw subscribed events to a box.</p>
                     <ul>
-                        <li><code>Random</code> picks one source while avoiding the same source twice in a row when possible.</li>
+                        <li><strong>Chat message</strong> triggers are good for chat overlays and token-driven text.</li>
+                        <li><strong>Command</strong> triggers are good for intentional effects like <code>!hype</code>, <code>!tts</code>, or <code>!meme</code>.</li>
+                        <li><strong>Action</strong> triggers let Streamer.bot actions drive a NekoBot box.</li>
+                        <li><strong>Raw triggers</strong> can be narrowed with hit rules when only specific trigger data should run the box.</li>
+                    </ul>
+                    <p>New trigger bindings are created through the <a href="component-add-trigger.html">Add Trigger</a> control. Use command triggers for viewer commands, action triggers for Streamer.bot action flows, and raw triggers when you need to match a subscribed event directly.</p>
+                </section>
+
+                <section class="panel" id="source-rotation">
+                    <h2>Source Rotation</h2>
+                    <p>For boxes with more than one source, source trigger mode decides which source appears when the box is triggered.</p>
+                    <ul>
                         <li><code>Sequence</code> moves through the source list and wraps around at the end.</li>
-                        <li><code>Custom</code> evaluates rules against trigger values and chooses the matching source.</li>
+                        <li><code>Random</code> picks one source while avoiding the same source twice in a row when possible.</li>
+                        <li><code>Custom</code> creates IF/ELSE-style rules against trigger values and maps each match to a source.</li>
+                    </ul>
+                    <p>This is the right setup for rotating memes, short video stingers, sound cues, and different responses from the same command.</p>
+                </section>
+
+                <section class="panel" id="obs-viewer">
+                    <h2>OBS Viewer</h2>
+                    <img class="screenshot" src="../assets/screenshots/open-overlay.png" alt="Open Overlay viewer page" />
+                    <p>The Open Overlay page previews the real overlay viewer and exposes the URL OBS should use. OBS should load the overlay URL as one browser source, then stretch that browser source across the whole scene.</p>
+                    <ol class="step-list">
+                        <li>Save the overlay in Overlay Setup.</li>
+                        <li>Click <code>Copy OBS URL</code>, or use Open Overlay and copy the browser URL.</li>
+                        <li>Add a Browser Source in OBS.</li>
+                        <li>Set the browser source to the full scene size, usually <code>1920x1080</code> or your canvas size.</li>
+                        <li>Keep this one NekoBot source above the scene content that the effects should cover.</li>
+                    </ol>
+                </section>
+
+                <section class="panel notice" id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+                    <ul>
+                        <li>If <code>Copy OBS URL</code> is disabled, save the overlay first.</li>
+                        <li>If nothing appears in OBS, confirm the browser source uses the overlay URL and covers the whole scene.</li>
+                        <li>If a trigger does nothing, confirm Streamer.bot is connected and the needed event group is subscribed.</li>
+                        <li>If the wrong source appears, check the box source trigger mode and any custom rules.</li>
+                        <li>If media does not render, test the source in the source dialog preview and confirm the file or URL is reachable.</li>
+                        <li>If layout feels off in OBS, match the OBS browser-source size to the stream canvas size.</li>
                     </ul>
                 </section>
             </article>
         </main>
     </div>
+    <script src="../docs-nav.js"></script>
 </body>
 </html>

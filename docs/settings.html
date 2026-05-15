@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="tree-nav" aria-label="Documentation navigation">
+                <nav class="tree-control" aria-label="Documentation tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item active" href="settings.html">Settings</a>
+                        <a class="tree-item nested active" href="#app-settings">App settings</a>
+                        <a class="tree-item nested" href="#updates">Updates</a>
+                        <a class="tree-item nested" href="#logs">Logs</a>
+                        <a class="tree-item nested" href="#log-cleanup">Log cleanup</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
+                        <a class="tree-item" href="examples.html#media-command">Media command</a>
+                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
+                        <a class="tree-item" href="examples.html#random-source">Random source</a>
+                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
+            </aside>
+
+            <article class="doc-content">
+                <section>
+                    <p class="kicker">App</p>
+                    <h1>Settings</h1>
+                    <p class="lead">Settings controls the local app port, logging level, GitHub update flow, and daily log files.</p>
+                </section>
+
+                <section class="panel" id="app-settings">
+                    <h2>App Settings</h2>
+                    <img class="screenshot" src="../assets/screenshots/settings.png" alt="Settings and log viewer page" />
+                    <p>Use App Settings when you need to change how the local setup server runs or how much detail NekoBot writes to logs.</p>
+                    <div class="token-table" role="table" aria-label="App settings controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it means</strong></div>
+                        <div role="row"><code role="cell">App port</code><span role="cell">The local HTTP port used by NekoBot setup pages and overlay URLs. Changing it may require updating saved OBS browser-source URLs.</span></div>
+                        <div role="row"><code role="cell">Logging</code><span role="cell">Controls log detail. Use more verbose logging when diagnosing an issue, then reduce it again for normal use.</span></div>
+                        <div role="row"><code role="cell">Save settings</code><span role="cell">Writes app settings. If the page shows the restart hint, restart NekoBot before expecting the change to apply.</span></div>
+                        <div role="row"><code role="cell">Restart hint</code><span role="cell">Appears when a saved setting needs the app process to restart.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="updates">
+                    <h2>Updates</h2>
+                    <p>The update box checks GitHub Releases for a newer NekoBot build and can stage an update before restarting the app.</p>
+                    <div class="token-table" role="table" aria-label="Update controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it does</strong></div>
+                        <div role="row"><code role="cell">Check for update</code><span role="cell">Checks GitHub Releases for a newer public release.</span></div>
+                        <div role="row"><code role="cell">Download update</code><span role="cell">Downloads and stages the newer release when one is available.</span></div>
+                        <div role="row"><code role="cell">Apply and restart</code><span role="cell">Applies the staged update and restarts NekoBot. Use it when you are ready for the app to briefly stop and relaunch.</span></div>
+                        <div role="row"><code role="cell">Update details</code><span role="cell">Shows release information returned by the update check.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="logs">
+                    <h2>Logs</h2>
+                    <p>Logs are daily files used to diagnose startup, Streamer.bot, overlay, source, TTS, and update problems. The viewer shows recent content from the selected log.</p>
+                    <div class="token-table" role="table" aria-label="Log viewer controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">Usage</strong></div>
+                        <div role="row"><code role="cell">Log Files</code><span role="cell">Lists daily log files. Select one to load it into the viewer.</span></div>
+                        <div role="row"><code role="cell">Refresh</code><span role="cell">Reloads the log file list and selected log content.</span></div>
+                        <div role="row"><code role="cell">Collapse files</code><span role="cell">Hides or shows the log file sidebar when you want more room for the viewer.</span></div>
+                        <div role="row"><code role="cell">Total log storage</code><span role="cell">Shows how much disk space the log folder is using.</span></div>
+                        <div role="row"><code role="cell">Log viewer</code><span role="cell">Displays the selected log with newer entries first. It auto-refreshes while a log is selected.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel notice" id="log-cleanup">
+                    <h2>Log Cleanup</h2>
+                    <div class="token-table" role="table" aria-label="Log cleanup controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">Effect</strong></div>
+                        <div role="row"><code role="cell">Delete log file</code><span role="cell">Deletes one selected daily log after confirmation.</span></div>
+                        <div role="row"><code role="cell">Delete all logs</code><span role="cell">Deletes all daily logs after confirmation. Use this only after saving any logs you need for issue reports.</span></div>
+                    </div>
+                    <p>When reporting a bug through <a href="https://github.com/ArnieTW/NekoBot/issues">GitHub Issues</a>, include the relevant error lines instead of deleting the logs first.</p>
+                </section>
+            </article>
+        </main>
+    </div>
+    <script src="../docs-nav.js"></script>
+</body>
+</html>

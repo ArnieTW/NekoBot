@@ -9,22 +9,47 @@
 <body>
     <div class="page">
         <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
             <div class="nav-links">
-                <a href="./">Documentation</a>
-                <a href="../releases/">Releases</a>
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
             </div>
         </nav>
 
         <main class="docs-layout">
-            <aside class="docs-nav" aria-label="Documentation navigation">
-                <a href="./">Overview</a>
-                <a href="./download-install.html">Download & Install</a>
-                <a href="./overlay-setup.html">Overlay Setup</a>
-                <a href="./streamerbot.html">Streamer.bot</a>
-                <a href="./tts.html">TTS Setup</a>
-                <a class="active" href="./examples.html">Examples</a>
-                <a href="./troubleshooting.html">Troubleshooting</a>
+            <aside class="tree-nav" aria-label="Examples navigation">
+                <nav class="tree-control" aria-label="Examples tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item" href="settings.html">Settings</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item active" href="#chat-text">Chat text</a>
+                        <a class="tree-item" href="#media-command">Media command</a>
+                        <a class="tree-item" href="#tts-message">TTS message</a>
+                        <a class="tree-item" href="#random-source">Random source</a>
+                        <a class="tree-item" href="#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
             </aside>
 
             <article class="doc-content">
@@ -34,7 +59,7 @@
                     <p class="lead">These examples describe common first overlays without exposing internal implementation details.</p>
                 </section>
 
-                <section class="panel example">
+                <section class="panel example" id="chat-text">
                     <h2>Show Chat Text On Stream</h2>
                     <ol class="step-list">
                         <li>Open Overlay Setup and create an overlay.</li>
@@ -46,7 +71,7 @@
                     </ol>
                 </section>
 
-                <section class="panel example">
+                <section class="panel example" id="media-command">
                     <h2>Play A Media Clip From A Command</h2>
                     <ol class="step-list">
                         <li>Create or select an overlay.</li>
@@ -58,7 +83,7 @@
                     </ol>
                 </section>
 
-                <section class="panel example">
+                <section class="panel example" id="tts-message">
                     <h2>Read A Message With TTS</h2>
                     <ol class="step-list">
                         <li>Enable a TTS model from TTS Setup.</li>
@@ -69,7 +94,7 @@
                     </ol>
                 </section>
 
-                <section class="panel example">
+                <section class="panel example" id="random-source">
                     <h2>Pick A Random Source</h2>
                     <ol class="step-list">
                         <li>Add multiple sources to a box.</li>
@@ -79,7 +104,7 @@
                     </ol>
                 </section>
 
-                <section class="panel example">
+                <section class="panel example" id="trigger-tokens">
                     <h2>Use Trigger Tokens</h2>
                     <p>Any field with the trigger-token help marker supports autocomplete. Type <code>{{</code> to open suggestions, keep typing to filter, then choose a token.</p>
                     <div class="token-table" role="table" aria-label="Common trigger tokens">
@@ -99,5 +124,6 @@
             </article>
         </main>
     </div>
+    <script src="../docs-nav.js"></script>
 </body>
 </html>

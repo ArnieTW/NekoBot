@@ -10,14 +10,14 @@
 <body>
     <div class="page">
         <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="./">
-                <span class="brand-mark">N</span>
+            <a class="brand" href="index.html">
+                <img class="brand-logo" src="./assets/ArnieTW_Mischevous.png" alt="" />
                 <span>NekoBot</span>
             </a>
             <div class="nav-links">
-                <a href="./docs/">Documentation</a>
-                <a href="./releases/">Releases</a>
+                <a href="docs/index.html">Documentation</a>
                 <a href="./docs/examples.html">Examples</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
                 <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
             </div>
         </nav>
@@ -27,20 +27,21 @@
             <h1>Build HTTP overlays, bind triggers, and keep stream effects under control.</h1>
             <p class="lead">NekoBot provides browser-source overlays for tools like OBS, Streamer.bot integration, source management, and optional local TTS support.</p>
             <div class="button-row">
-                <a class="button primary" href="./releases/">Download latest release</a>
-                <a class="button" href="./docs/">Read documentation</a>
+                <a class="button primary" href="https://github.com/ArnieTW/NekoBot/releases/latest" data-release-download>Download latest release</a>
+                <a class="button" href="docs/index.html">Read documentation</a>
                 <a class="button" href="./docs/examples.html">View examples</a>
+                <a class="button" href="https://linktr.ee/ArnieTW">Find ArnieTW</a>
             </div>
         </header>
 
         <section class="section grid" aria-label="Highlights">
             <article class="card">
                 <h3>HTTP Overlays</h3>
-                <p>Create overlay layouts and open them as browser sources in OBS or any streaming software that supports web overlays.</p>
+                <p>Create one full-scene browser overlay in OBS, then place triggered boxes inside it for stream effects.</p>
             </article>
             <article class="card">
                 <h3>Trigger Binding</h3>
-                <p>Bind boxes to Streamer.bot events, commands, and actions, then route the selected source when a trigger arrives.</p>
+                <p>Bind boxes to Streamer.bot events, commands, and actions, then show the selected meme, media cue, text, URL, or TTS source when a trigger arrives.</p>
             </article>
             <article class="card">
                 <h3>Local Setup</h3>
@@ -51,7 +52,7 @@
         <section class="section two-column">
             <div class="panel">
                 <h2>Get Started</h2>
-                <p>Download a release package, run NekoBot, then open the setup page from the tray menu. From there you can create overlays, connect Streamer.bot, and copy overlay URLs into OBS.</p>
+                <p>Download a release package, run NekoBot, then open the setup page from the tray menu. From there you can create one overlay for a stream scene, add boxes for different triggered effects, connect Streamer.bot, and copy the overlay URL into OBS.</p>
                 <img class="screenshot" src="./assets/screenshots/setup-home.png" alt="NekoBot setup home screen" />
                 <div class="button-row">
                     <a class="button primary" href="./docs/download-install.html">Installation guide</a>
@@ -59,14 +60,36 @@
                 </div>
             </div>
             <div class="panel notice">
-                <h3>Public Repository Note</h3>
-                <p>This site is designed to be published separately from the private NekoBot source tree. Release binaries should be attached through GitHub Releases.</p>
+                <p class="kicker">Current Release</p>
+                <h3 data-release-title>Latest Release</h3>
+                <p class="meta" data-release-meta>Loading GitHub release details...</p>
+                <div class="release-notes compact" data-release-changelog>
+                    <p>Loading the current changelog from GitHub Releases.</p>
+                </div>
+                <div class="button-row">
+                    <a class="button primary" href="https://github.com/ArnieTW/NekoBot/releases/latest" data-release-download>Download</a>
+                    <a class="button" href="https://github.com/ArnieTW/NekoBot/releases/latest" data-release-link>View release</a>
+                </div>
+                <p class="meta" data-release-status></p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="panel linktree-panel">
+                <img class="linktree-logo" src="./assets/DonateLogo.png" alt="ArnieTW" />
+                <div>
+                    <p class="kicker">Links</p>
+                    <h2>Find ArnieTW</h2>
+                    <p>For the full set of links, socials, updates, and where to find me, use the ArnieTW Linktree.</p>
+                </div>
+                <a class="button primary" href="https://linktr.ee/ArnieTW">Open Linktree</a>
             </div>
         </section>
 
         <footer class="footer">
-            <span>NekoBot documentation site. Replace placeholder GitHub links before publishing.</span>
+            <span>NekoBot documentation site. Downloads are hosted on GitHub Releases.</span>
         </footer>
     </div>
+    <script src="./release.js"></script>
 </body>
 </html>

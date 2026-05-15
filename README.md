@@ -1,6 +1,6 @@
 # NekoBot Public Page
 
-This folder is a standalone GitHub Pages site for public documentation and releases.
+This folder is a standalone GitHub Pages site for public documentation and GitHub release links.
 It intentionally contains no NekoBot application source code.
 
 ## Publishing
@@ -38,8 +38,5 @@ Screenshots live in `assets/screenshots/` and are referenced by the documentatio
 They can be regenerated from a running local NekoBot instance with a headless
 browser capture workflow.
 
-Before publishing, replace placeholder links in:
-
-- `index.html`
-- `releases/index.html`
-- `docs/download-install.html`
+The public pages link to `https://github.com/ArnieTW/NekoBot/releases` and
+`https://github.com/ArnieTW/NekoBot/releases/latest`.

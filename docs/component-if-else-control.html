@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IF/Else Control Component - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="tree-nav" aria-label="Documentation navigation">
+                <nav class="tree-control" aria-label="Documentation tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item" href="settings.html">Settings</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item active" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item nested" href="#if-else-purpose">Purpose</a>
+                        <a class="tree-item nested" href="#if-else-row">Rule row</a>
+                        <a class="tree-item nested" href="#if-else-operators">Operators</a>
+                        <a class="tree-item nested" href="#if-else-result">THEN result</a>
+                        <a class="tree-item nested" href="#if-else-order">Reorder and nest</a>
+                        <a class="tree-item nested" href="#if-else-else">Else fallback</a>
+                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
+                        <a class="tree-item" href="examples.html#media-command">Media command</a>
+                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
+                        <a class="tree-item" href="examples.html#random-source">Random source</a>
+                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
+            </aside>
+
+            <article class="doc-content">
+                <section id="if-else-component">
+                    <p class="kicker">Inside Component</p>
+                    <h1>IF/Else Control</h1>
+                    <p class="lead">The IF/Else control is the rule builder used when a trigger needs conditional behavior. It checks trigger data, chooses a result when a rule matches, and falls back to an Else result when nothing matches.</p>
+                </section>
+
+                <section class="panel" id="if-else-purpose">
+                    <h2>Purpose</h2>
+                    <img class="screenshot" src="../assets/screenshots/add-trigger-custom-sequencing.png" alt="IF/Else rule builder inside Add Trigger custom sequencing" />
+                    <p>In Add Trigger, this control appears in <code>Custom</code> sequencing and raw trigger hit rules. Custom sequencing uses IF/THEN rows to choose which source should run. Raw hit rules use the same IF structure to decide whether a raw event should count as a trigger.</p>
+                </section>
+
+                <section class="panel" id="if-else-row">
+                    <h2>Rule Row</h2>
+                    <p>Each row reads as a sentence: IF this trigger value matches this comparison, THEN use this result.</p>
+                    <div class="token-table">
+                        <div><strong>UI option</strong></div>
+                        <div><strong>What it does</strong></div>
+                        <div><code>IF</code></div>
+                        <div>The value to check. This is usually an <a href="component-argument-control.html#argument-control-open">Argument Control</a> token such as <code>{{message.text}}</code>, <code>{{user.name}}</code>, or <code>{{command.arguments[0]}}</code>.</div>
+                        <div><code>Operator</code></div>
+                        <div>The comparison to run against the IF value.</div>
+                        <div><code>Compare to</code></div>
+                        <div>The value matched by the operator. Text comparisons can use plain text or another Argument Control token.</div>
+                        <div><code>THEN</code></div>
+                        <div>The result used when the rule matches. In custom sequencing, this is the source or source slot to show.</div>
+                        <div><code>X</code></div>
+                        <div>Deletes that rule row.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="if-else-operators">
+                    <h2>Operators</h2>
+                    <p>The available operators change based on the type of the token on the left side.</p>
+                    <div class="token-table">
+                        <div><strong>Value type</strong></div>
+                        <div><strong>Available operators</strong></div>
+                        <div><code>String</code></div>
+                        <div><code>Exists</code>, <code>Equals</code>, <code>Does not equal</code>, <code>Contains</code>, <code>Does not contain</code>, <code>Starts with</code>, and <code>Ends with</code>.</div>
+                        <div><code>Number</code></div>
+                        <div><code>Exists</code>, <code>Equals</code>, <code>Does not equal</code>, <code>Greater than</code>, and <code>Less than</code>.</div>
+                        <div><code>Boolean</code></div>
+                        <div><code>Exists</code>, <code>Equals</code>, and <code>Does not equal</code>. The comparison value becomes a true/false selector.</div>
+                        <div><code>Exists</code></div>
+                        <div>Hides the Compare to field because the rule only checks whether the value is present.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="if-else-result">
+                    <h2>THEN Result</h2>
+                    <p>The result column changes depending on where the IF/Else control is used.</p>
+                    <div class="token-table">
+                        <div><strong>Context</strong></div>
+                        <div><strong>Result choices</strong></div>
+                        <div><code>Add Trigger Custom sequencing</code></div>
+                        <div>Choose one or more sources for a normal box. For grouped boxes, map each child box to a source slot.</div>
+                        <div><code>Raw hit rules</code></div>
+                        <div>Choose <code>Trigger</code> when the raw event should run the box, or <code>False</code> when the matching event should be ignored.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="if-else-order">
+                    <h2>Reorder And Nest</h2>
+                    <img class="screenshot" src="../assets/screenshots/add-trigger-custom-sequencing.png" alt="IF/Else control showing the four-dot drag handle at the start of the rule row" />
+                    <p>The four-dot control at the start of each row is the drag handle. Drag it up or down to reorder rules. Drag it onto the middle of another rule to nest it under that rule.</p>
+                    <div class="token-table">
+                        <div><strong>Drag target</strong></div>
+                        <div><strong>What happens</strong></div>
+                        <div>Top of another row</div>
+                        <div>Moves the dragged rule before that row.</div>
+                        <div>Bottom of another row</div>
+                        <div>Moves the dragged rule after that row.</div>
+                        <div>Middle of another row</div>
+                        <div>Nests the dragged rule as a child of that row. Use this when a rule should only be checked after its parent condition matches.</div>
+                    </div>
+                    <p>Order matters. NekoBot evaluates the rule structure from top to bottom, so place the most specific cases above broader fallback-style cases.</p>
+                </section>
+
+                <section class="panel" id="if-else-else">
+                    <h2>Else Fallback</h2>
+                    <p><code>Else source</code> is the fallback result for Custom sequencing. If none of the IF rows match, NekoBot uses the Else source instead. Keep this set to a safe default source so the trigger still has a predictable result.</p>
+                </section>
+            </article>
+        </main>
+    </div>
+    <script src="../docs-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Argument Control Component - NekoBot</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
+            <div class="nav-links">
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
+            </div>
+        </nav>
+
+        <main class="docs-layout">
+            <aside class="tree-nav" aria-label="Documentation navigation">
+                <nav class="tree-control" aria-label="Documentation tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item" href="settings.html">Settings</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item active" href="component-argument-control.html">Argument Control</a>
+                        <a class="tree-item nested" href="#argument-control-open">Auto-Complete</a>
+                        <a class="tree-item nested" href="#argument-control-completed">Auto-completed</a>
+                        <a class="tree-item nested" href="#argument-control-add-trigger">Add Trigger control</a>
+                        <a class="tree-item nested" href="#argument-control-triggers">Trigger tokens</a>
+                        <a class="tree-item nested" href="#argument-control-arguments">Argument values</a>
+                        <a class="tree-item nested" href="#argument-control-selection">Selection behavior</a>
+                        <a class="tree-item nested" href="#argument-control-examples">Examples</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
+                        <a class="tree-item" href="examples.html#media-command">Media command</a>
+                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
+                        <a class="tree-item" href="examples.html#random-source">Random source</a>
+                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
+            </aside>
+
+            <article class="doc-content">
+                <section id="argument-control-component">
+                    <p class="kicker">Inside Component</p>
+                    <h1>Argument Control</h1>
+                    <p class="lead">Argument Control is the <code>{{</code> autocomplete used in source text, media trigger mappings, TTS messages, and other trigger-aware fields.</p>
+                </section>
+
+                <section class="panel" id="argument-control-open">
+                    <h2>Auto-Complete</h2>
+                    <img class="screenshot" src="../assets/screenshots/argument-control-autocomplete.png" alt="Argument Control Auto-Complete opened after typing double curly braces" />
+                    <p>Type <code>{{</code> in a supported field to open the Auto-Complete control. The list filters while the user types, and the selected token inserts without forcing the user to leave the keyboard.</p>
+                    <p>Use this whenever a field needs live trigger data instead of fixed text, such as chat names, message text, command arguments, dynamic media URLs, or custom trigger payload values.</p>
+                </section>
+
+                <section class="panel" id="argument-control-completed">
+                    <h2>Auto-completed</h2>
+                    <img class="screenshot" src="../assets/screenshots/argument-control-completed.png" alt="Argument Control after selecting a token from Auto-Complete" />
+                    <p>After a suggestion is selected, NekoBot shows the token as a compact chip so completed fields are easier to scan.</p>
+                    <p>The saved value remains a template token such as <code>{{channel.channelName}}</code>, <code>{{user.display}}</code>, or <code>{{command.arguments[0]}}</code>, so the trigger system still receives the exact runtime value it needs.</p>
+                </section>
+
+                <section class="panel" id="argument-control-add-trigger">
+                    <h2>Add Trigger Control</h2>
+                    <p><code>Triggers</code> is the search control used in Add Trigger. It is populated from the Streamer.bot trigger catalog, then displays each available trigger as a selectable row.</p>
+                    <div class="token-table">
+                        <div><strong>Populated item</strong></div>
+                        <div><strong>What appears in the list</strong></div>
+                        <div><code>Raw Trigger</code></div>
+                        <div>Subscribed raw Streamer.bot events. Rows show the event label or key, category <code>Raw Trigger</code>, and the description <code>Subscribed raw Streamer.bot event.</code></div>
+                        <div><code>Command Trigger</code></div>
+                        <div>Streamer.bot commands. Rows show the command name, category <code>Command Trigger</code>, and description parts from command aliases, trigger modes, and disabled state.</div>
+                        <div><code>Action Trigger</code></div>
+                        <div>Streamer.bot actions. Rows show the action name, category <code>Action Trigger</code>, and description parts from action group, trigger events, and disabled state.</div>
+                        <div>Search behavior</div>
+                        <div>Search matches trigger name, key, description, and category. Triggers already bound to the current box are hidden from the list.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="argument-control-triggers">
+                    <h2>Trigger Tokens</h2>
+                    <p>The <code>{{</code> Auto-Complete list is populated by <code>/api/triggers/mapping</code>. It is one flat list sorted by token key, filtered by what the user types after <code>{{</code>, then by the search field.</p>
+                    <div class="token-table">
+                        <div><strong>Category</strong></div>
+                        <div><strong>Tokens populated in the UI</strong></div>
+                        <div><code>User</code></div>
+                        <div><code>{{user.id}}</code>, <code>{{user.name}}</code>, <code>{{user.display}}</code>, <code>{{user.login}}</code>, <code>{{user.role}}</code>, <code>{{user.roleName}}</code>, <code>{{user.avatar}}</code>, <code>{{user.color}}</code>, <code>{{user.badges}}</code>, <code>{{user.subscribed}}</code>, <code>{{user.subscriptionTier}}</code>, <code>{{user.monthsSubscribed}}</code>, <code>{{user.verified}}</code>, plus aliases <code>{{user.username}}</code>, <code>{{user.isSubscribed}}</code>, <code>{{user.isVerified}}</code>, <code>{{user.profilePicture}}</code>, <code>{{user.displayName}}</code>, and <code>{{userName}}</code>.</div>
+                        <div><code>Message</code></div>
+                        <div><code>{{message.id}}</code>, <code>{{message.text}}</code>, <code>{{message.emotes}}</code>, <code>{{message.parts}}</code>, <code>{{message.meta}}</code>, plus alias <code>{{text}}</code>.</div>
+                        <div><code>Channel</code></div>
+                        <div><code>{{channel.id}}</code>, <code>{{channel.name}}</code>, <code>{{channel.channelName}}</code>, <code>{{channel.platform}}</code>, <code>{{channel.isLive}}</code>.</div>
+                        <div><code>Trigger</code></div>
+                        <div><code>{{trigger.id}}</code>, <code>{{trigger.type}}</code>, <code>{{trigger.eventType}}</code>, <code>{{trigger.source}}</code>, <code>{{trigger.timestamp}}</code>, <code>{{trigger.name}}</code>, <code>{{trigger.isFirstWords}}</code>, plus alias <code>{{isFirstWords}}</code>.</div>
+                        <div><code>Context</code></div>
+                        <div><code>{{context.sessionId}}</code>, <code>{{context.requestId}}</code>, <code>{{context.correlationId}}</code>, <code>{{context.tags}}</code>, <code>{{context.metadata}}</code>.</div>
+                        <div><code>Platform</code></div>
+                        <div><code>{{platforms.streamerbot}}</code>, <code>{{platforms.twitch}}</code>, <code>{{platforms.kick}}</code>, <code>{{platforms.youtube}}</code>, <code>{{platforms.custom}}</code>.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="argument-control-arguments">
+                    <h2>Argument Values</h2>
+                    <p>These are the currently populated mappings that behave like command or payload arguments inside the same <code>{{</code> Auto-Complete list.</p>
+                    <div class="token-table">
+                        <div><strong>Argument source</strong></div>
+                        <div><strong>Tokens populated in the UI</strong></div>
+                        <div><code>Command arguments</code></div>
+                        <div><code>{{command.name}}</code>, <code>{{command.prefix}}</code>, <code>{{command.fullCommand}}</code>, <code>{{command.arguments}}</code>, <code>{{command.arguments[0]}}</code>, <code>{{command.argumentCount}}</code>, <code>{{command.argsText}}</code>, <code>{{command.counter}}</code>, <code>{{command.userCounter}}</code>, plus alias <code>{{firstArg}}</code>.</div>
+                        <div><code>Message text</code></div>
+                        <div><code>{{message.text}}</code> and alias <code>{{text}}</code>. Use these for chat-driven text, TTS content, captions, and callouts.</div>
+                        <div><code>Custom payload</code></div>
+                        <div><code>{{custom}}</code> and <code>{{custom["key"]}}</code>. Replace <code>key</code> with the custom variable name supplied by the trigger payload.</div>
+                        <div>Autocomplete display</div>
+                        <div>Each suggestion shows its label, then metadata made from category, type, optional hint, raw token when filtering by a typed prefix, and local usage count.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="argument-control-selection">
+                    <h2>Selection Behavior</h2>
+                    <div class="token-table">
+                        <div><strong>Action</strong></div>
+                        <div><strong>What it does</strong></div>
+                        <div><code>Type {{</code></div>
+                        <div>Opens the autocomplete menu.</div>
+                        <div><code>Keep typing</code></div>
+                        <div>Filters the suggestions by token key, label, or category.</div>
+                        <div><code>Arrow keys</code></div>
+                        <div>Move through visible suggestions.</div>
+                        <div><code>Enter</code> or <code>Tab</code></div>
+                        <div>Insert the selected token.</div>
+                        <div>Completed chip</div>
+                        <div>Displays the inserted token as a readable label while keeping the underlying template value intact.</div>
+                        <div><code>Escape</code></div>
+                        <div>Closes the menu without inserting a token.</div>
+                    </div>
+                </section>
+
+                <section class="panel" id="argument-control-examples">
+                    <h2>Examples</h2>
+                    <div class="token-table">
+                        <div><strong>Use case</strong></div>
+                        <div><strong>Template</strong></div>
+                        <div>Chat callout</div>
+                        <div><code>{{user.display}}: {{message.text}}</code></div>
+                        <div>TTS command</div>
+                        <div><code>{{command.argsText}}</code></div>
+                        <div>Custom payload value</div>
+                        <div><code>{{custom["favoriteColor"]}}</code></div>
+                        <div>Command debug text</div>
+                        <div><code>{{user.display}} used {{command.name}} with {{command.argumentCount}} arguments</code></div>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+    <script src="../docs-nav.js"></script>
+</body>
+</html>

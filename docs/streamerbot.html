@@ -9,53 +9,159 @@
 <body>
     <div class="page">
         <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../"><span class="brand-mark">N</span><span>NekoBot</span></a>
+            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
             <div class="nav-links">
-                <a href="./">Documentation</a>
-                <a href="../releases/">Releases</a>
+                <a href="index.html">Documentation</a>
+                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
+                <a href="https://github.com/ArnieTW/NekoBot/releases">GitHub Releases</a>
             </div>
         </nav>
 
         <main class="docs-layout">
-            <aside class="docs-nav" aria-label="Documentation navigation">
-                <a href="./">Overview</a>
-                <a href="./download-install.html">Download & Install</a>
-                <a href="./overlay-setup.html">Overlay Setup</a>
-                <a class="active" href="./streamerbot.html">Streamer.bot</a>
-                <a href="./tts.html">TTS Setup</a>
-                <a href="./examples.html">Examples</a>
-                <a href="./troubleshooting.html">Troubleshooting</a>
+            <aside class="tree-nav" aria-label="Documentation navigation">
+                <nav class="tree-control" aria-label="Documentation tree">
+                    <a class="tree-item root" href="index.html">Overview</a>
+                    <a class="tree-item root" href="download-install.html">Download & Install</a>
+                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
+                    <div class="tree-group">
+                        <div class="tree-heading">Landing Pages</div>
+                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
+                        <a class="tree-item active" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item nested active" href="#connection">Connection</a>
+                        <a class="tree-item nested" href="#connection-controls">Connection controls</a>
+                        <a class="tree-item nested" href="#events">Events</a>
+                        <a class="tree-item nested" href="#bound-triggers">Bound triggers</a>
+                        <a class="tree-item nested" href="#trigger-types">Trigger types</a>
+                        <a class="tree-item nested" href="#example">Example</a>
+                        <a class="tree-item nested" href="#troubleshooting">Troubleshooting</a>
+                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="manage-sources.html">Manage Sources</a>
+                        <a class="tree-item" href="settings.html">Settings</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Components</div>
+                        <a class="tree-item" href="component-overlay.html">Overlay</a>
+                        <a class="tree-item" href="component-box.html">Box</a>
+                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
+                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
+                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
+                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
+                    </div>
+                    <div class="tree-group">
+                        <div class="tree-heading">Examples</div>
+                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
+                        <a class="tree-item" href="examples.html#media-command">Media command</a>
+                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
+                        <a class="tree-item" href="examples.html#random-source">Random source</a>
+                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
+                    </div>
+                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
+                </nav>
             </aside>
 
             <article class="doc-content">
                 <section>
                     <p class="kicker">Integration</p>
                     <h1>Streamer.bot Setup</h1>
-                    <p class="lead">Streamer.bot provides the events that NekoBot can bind to overlay boxes.</p>
+                    <p class="lead">Streamer.bot provides the events, commands, and actions that NekoBot can bind to overlay boxes.</p>
                 </section>
 
-                <section class="panel">
+                <section class="panel" id="connection">
                     <h2>Connection</h2>
                     <img class="screenshot" src="../assets/screenshots/streamerbot-setup.png" alt="Streamer.bot setup page" />
+                    <p>The Streamer.bot bridge keeps NekoBot connected to Streamer.bot's WebSocket server. Once connected, NekoBot can subscribe to event groups and expose those events as overlay triggers.</p>
                     <ol class="step-list">
-                        <li>Enable the Streamer.bot WebSocket server.</li>
-                        <li>Open NekoBot setup and choose Streamer.bot setup.</li>
-                        <li>Enter the host, port, and password if configured.</li>
-                        <li>Connect and subscribe to the event groups you want to use.</li>
+                        <li>In Streamer.bot, enable the WebSocket server.</li>
+                        <li>Open NekoBot Setup Home and choose Streamer.bot Setup.</li>
+                        <li>Turn on <code>Enable Streamer.bot bridge</code>.</li>
+                        <li>Enter the WebSocket URL, usually <code>ws://127.0.0.1:8080/</code> when Streamer.bot runs on the same machine.</li>
+                        <li>Enter the WebSocket password if your Streamer.bot server requires one.</li>
+                        <li>Choose a reconnect delay. Start with <code>10</code> seconds unless you have a reason to retry faster or slower.</li>
+                        <li>Save settings, then use Reconnect or Refresh to verify the current status.</li>
                     </ol>
                 </section>
 
-                <section class="panel">
-                    <h2>Triggers</h2>
-                    <p>Triggers can represent raw subscribed events, commands, or actions. Use Overlay Setup to bind a trigger to a box.</p>
+                <section class="panel" id="connection-controls">
+                    <h2>Connection Controls</h2>
+                    <p>This page is the landing page for everything NekoBot receives from Streamer.bot. If this page is disconnected, command triggers, action triggers, and raw event triggers cannot update overlay boxes.</p>
+                    <div class="token-table" role="table" aria-label="Streamer.bot connection controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it means</strong></div>
+                        <div role="row"><code role="cell">Enable Streamer.bot bridge</code><span role="cell">Turns the background WebSocket bridge on or off. Disable it only when you do not want NekoBot to listen to Streamer.bot at all.</span></div>
+                        <div role="row"><code role="cell">WebSocket URL</code><span role="cell">The Streamer.bot WebSocket endpoint. For Streamer.bot on the same PC, start with <code>ws://127.0.0.1:8080/</code>.</span></div>
+                        <div role="row"><code role="cell">Password</code><span role="cell">Used when Streamer.bot's WebSocket server requires authentication. Saved passwords are encrypted at rest.</span></div>
+                        <div role="row"><code role="cell">Reconnect delay</code><span role="cell">How long NekoBot waits before retrying after a disconnect. <code>10</code> seconds is a good default for most setups.</span></div>
+                        <div role="row"><code role="cell">Save settings</code><span role="cell">Stores the URL, password, reconnect delay, enabled state, and selected event groups.</span></div>
+                        <div role="row"><code role="cell">Reconnect</code><span role="cell">Forces the bridge to close and reopen the WebSocket connection using the saved settings.</span></div>
+                        <div role="row"><code role="cell">Refresh</code><span role="cell">Updates the visible status and known data from the current bridge state.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="events">
+                    <h2>Events</h2>
+                    <p>Events to subscribe controls which Streamer.bot event groups NekoBot listens to. Keep this list focused on the platforms and trigger types you actually use.</p>
+                    <div class="token-table" role="table" aria-label="Streamer.bot event controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">Usage</strong></div>
+                        <div role="row"><code role="cell">Load events</code><span role="cell">Asks Streamer.bot for the available event catalog. Use this after the bridge connects or after changing Streamer.bot integrations.</span></div>
+                        <div role="row"><code role="cell">Search events</code><span role="cell">Filters the event catalog when the list is large. Search by platform, event family, or event name.</span></div>
+                        <div role="row"><code role="cell">Event checkbox</code><span role="cell">Subscribes or unsubscribes NekoBot from that event group. Subscribe only to the events you need for overlays.</span></div>
+                        <div role="row"><code role="cell">Selected events</code><span role="cell">Saved with bridge settings and reused after reconnecting. These selected groups decide what raw triggers can appear later.</span></div>
+                    </div>
+                    <p>If an event never reaches NekoBot, first check that the bridge is connected, then check that the matching event group is subscribed.</p>
+                </section>
+
+                <section class="panel" id="bound-triggers">
+                    <h2>Bound Triggers</h2>
+                    <img class="screenshot" src="../assets/screenshots/streamerbot-bound-triggers.png" alt="Streamer.bot bound triggers" />
+                    <p>Bound Triggers shows the overlay boxes currently using Streamer.bot triggers. This is a quick audit view: it tells you which overlays, boxes, commands, trigger ids, source modes, and source counts are already wired.</p>
+                    <p>Use this section when a command or event is firing but the wrong box reacts, or when you want to confirm that an overlay still has the expected Streamer.bot bindings.</p>
+                    <div class="token-table" role="table" aria-label="Bound trigger columns">
+                        <div role="row"><strong role="cell">Column</strong><strong role="cell">Why it matters</strong></div>
+                        <div role="row"><code role="cell">Overlay</code><span role="cell">Shows which saved overlay contains the trigger. This helps when OBS is showing a different overlay than the one you edited.</span></div>
+                        <div role="row"><code role="cell">Box</code><span role="cell">Shows the box that will react when the trigger fires.</span></div>
+                        <div role="row"><code role="cell">Trigger</code><span role="cell">Shows the command, action, or raw event bound to the box.</span></div>
+                        <div role="row"><code role="cell">Source mode</code><span role="cell">Shows how NekoBot chooses sources when the box has more than one source.</span></div>
+                        <div role="row"><code role="cell">Sources</code><span role="cell">Shows how many sources are available for that trigger path.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="trigger-types">
+                    <h2>Trigger Types</h2>
+                    <p>Triggers can represent raw subscribed events, commands, or actions. Use Overlay Setup and the <a href="component-add-trigger.html">Add Trigger</a> control to bind a trigger to a box.</p>
+                    <div class="token-table" role="table" aria-label="Streamer.bot trigger types">
+                        <div role="row"><strong role="cell">Trigger type</strong><strong role="cell">Use it for</strong></div>
+                        <div role="row"><code role="cell">Chat message</code><span role="cell">Regular chat overlays, moderation callouts, captions, or text boxes using <code>{{message.text}}</code>.</span></div>
+                        <div role="row"><code role="cell">Command</code><span role="cell">Intentional viewer commands such as <code>!tts</code>, <code>!clip</code>, <code>!hype</code>, or <code>!meme</code>.</span></div>
+                        <div role="row"><code role="cell">Action</code><span role="cell">Streamer.bot actions that should drive an overlay box after a more complex Streamer.bot workflow.</span></div>
+                        <div role="row"><code role="cell">Raw event</code><span role="cell">Subscribed platform events when you need direct matching against event data or raw hit rules.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel example" id="example">
+                    <h2>Example: Command Plays A Meme</h2>
+                    <ol class="step-list">
+                        <li>Connect the Streamer.bot bridge and subscribe to the command events you need.</li>
+                        <li>Open Overlay Setup and select the overlay used by OBS.</li>
+                        <li>Add or select the box where the meme should appear.</li>
+                        <li>Add a media source for the meme, video stinger, sound cue, or URL.</li>
+                        <li>Open Trigger and bind a command trigger such as <code>!hype</code>.</li>
+                        <li>Save the overlay, then test the command from chat or Streamer.bot.</li>
+                    </ol>
+                </section>
+
+                <section class="panel notice" id="troubleshooting">
+                    <h2>Troubleshooting</h2>
                     <ul>
-                        <li>Use chat-message triggers for regular chat overlays.</li>
-                        <li>Use command triggers for commands such as <code>!tts</code> or <code>!clip</code>.</li>
-                        <li>Use action triggers when Streamer.bot actions should drive an overlay.</li>
+                        <li>If the status shows a connection error, confirm Streamer.bot is running and that the WebSocket server is enabled.</li>
+                        <li>If the URL is local, use <code>ws://127.0.0.1:8080/</code> unless you changed the Streamer.bot port.</li>
+                        <li>If a password is saved, click Change only when you need to replace it. Saved passwords are encrypted at rest.</li>
+                        <li>If events do not appear, connect first, then click Load events.</li>
+                        <li>If triggers are bound but nothing appears on stream, verify the overlay URL is open in OBS and the box has a source that can display.</li>
+                        <li>If reconnects are too noisy, increase the reconnect delay.</li>
                     </ul>
                 </section>
             </article>
         </main>
     </div>
+    <script src="../docs-nav.js"></script>
 </body>
 </html>
