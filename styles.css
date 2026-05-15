@@ -363,7 +363,7 @@ li {
 
 .linktree-logo {
     width: auto;
-    height: .82em;
+    height: 1em;
     object-fit: contain;
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .34));
 }
@@ -501,7 +501,7 @@ code {
     }
 
     .linktree-logo {
-        height: .78em;
+        height: 1em;
     }
 
     .nav {
