@@ -10,11 +10,35 @@
         meta: "[data-release-meta]",
         changelog: "[data-release-changelog]",
         download: "[data-release-download]",
+        options: "[data-release-options]",
         release: "[data-release-link]",
         status: "[data-release-status]"
     };
 
     const preferredAssetPattern = /\.(zip|msi|exe|7z)$/i;
+    const packageKinds = [
+        {
+            key: "windows",
+            title: "Windows x64",
+            kicker: "Recommended",
+            description: "Tray-enabled Windows build. Use this for normal desktop streaming setups.",
+            pattern: /NekoBot-win-x64-tray-cpu-.+\.zip$/i
+        },
+        {
+            key: "linux-gui",
+            title: "Linux x64 GUI",
+            kicker: "Testing",
+            description: "Linux desktop build with the GUI tray-style control. This build is prepared for testing.",
+            pattern: /NekoBot-linux-x64-gui-cpu-.+\.zip$/i
+        },
+        {
+            key: "linux-headless",
+            title: "Linux x64 Headless",
+            kicker: "Server",
+            description: "Linux build without a local tray UI. Manage it from the web setup page.",
+            pattern: /NekoBot-linux-x64-headless-cpu-.+\.zip$/i
+        }
+    ];
 
     function escapeHtml(value) {
         return String(value || "")
@@ -115,11 +139,84 @@
         });
     }
 
+    function formatBytes(bytes) {
+        const value = Number(bytes || 0);
+        if (!Number.isFinite(value) || value <= 0) {
+            return "";
+        }
+
+        const units = ["B", "KB", "MB", "GB"];
+        let size = value;
+        let index = 0;
+        while (size >= 1024 && index < units.length - 1) {
+            size /= 1024;
+            index += 1;
+        }
+
+        return `${size.toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+    }
+
     function pickDownloadUrl(release) {
         const assets = Array.isArray(release.assets) ? release.assets : [];
         const preferredAsset = assets.find((asset) => preferredAssetPattern.test(asset.name || ""));
         const firstAsset = assets[0];
         return preferredAsset?.browser_download_url || firstAsset?.browser_download_url || release.html_url || fallbackUrl;
+    }
+
+    function findAsset(release, pattern) {
+        const assets = Array.isArray(release.assets) ? release.assets : [];
+        return assets.find((asset) => pattern.test(asset.name || ""));
+    }
+
+    function findChecksumAsset(release) {
+        return findAsset(release, /^SHA256SUMS-.+\.txt$/i) || findAsset(release, /^SHA256SUMS\.txt$/i);
+    }
+
+    function renderDownloadOptions(release) {
+        const containers = document.querySelectorAll(selectors.options);
+        if (!containers.length) {
+            return;
+        }
+
+        const checksum = findChecksumAsset(release);
+        const cards = packageKinds.map((kind) => {
+            const asset = findAsset(release, kind.pattern);
+            const size = asset ? formatBytes(asset.size) : "";
+            const href = asset?.browser_download_url || release.html_url || fallbackUrl;
+            const disabledClass = asset ? "" : " disabled";
+            const buttonText = asset ? "Download" : "Open GitHub";
+            const meta = asset
+                ? `${escapeHtml(asset.name)}${size ? ` · ${escapeHtml(size)}` : ""}`
+                : "No matching asset was found on the latest release.";
+
+            return `
+                <article class="panel download-card${disabledClass}">
+                    <div class="download-card-header">
+                        <p class="kicker">${escapeHtml(kind.kicker)}</p>
+                        <h2>${escapeHtml(kind.title)}</h2>
+                    </div>
+                    <p>${escapeHtml(kind.description)}</p>
+                    <p class="meta">${meta}</p>
+                    <a class="button primary" href="${escapeHtml(href)}">${buttonText}</a>
+                </article>
+            `;
+        });
+
+        const checksumHtml = checksum
+            ? `<a class="button" href="${escapeHtml(checksum.browser_download_url)}">Download checksums</a>`
+            : `<a class="button" href="${escapeHtml(release.html_url || allReleasesUrl)}">View checksums</a>`;
+
+        containers.forEach((container) => {
+            container.innerHTML = `${cards.join("")}
+                <article class="panel download-card checksum-card">
+                    <div>
+                        <p class="kicker">Verify</p>
+                        <h2>Checksums</h2>
+                        <p class="meta">Use SHA256 checksums to verify the downloaded zip before extracting it.</p>
+                    </div>
+                    ${checksumHtml}
+                </article>`;
+        });
     }
 
     function formatDate(value) {
@@ -149,6 +246,7 @@
         setHref(selectors.download, downloadUrl);
         setHref(selectors.release, releaseUrl);
         setText(selectors.status, "Loaded from GitHub Releases.");
+        renderDownloadOptions(release);
     }
 
     function applyFallback() {
@@ -158,6 +256,15 @@
         setHref(selectors.download, fallbackUrl);
         setHref(selectors.release, allReleasesUrl);
         setText(selectors.status, "GitHub release details are unavailable right now.");
+        document.querySelectorAll(selectors.options).forEach((container) => {
+            container.innerHTML = `
+                <article class="panel download-card">
+                    <p class="kicker">Unavailable</p>
+                    <h2>Downloads could not be loaded</h2>
+                    <p class="meta">Open GitHub Releases to choose a Windows or Linux package.</p>
+                    <a class="button primary" href="${fallbackUrl}">Open GitHub Releases</a>
+                </article>`;
+        });
     }
 
     async function loadRelease() {

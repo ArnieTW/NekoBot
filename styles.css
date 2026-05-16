@@ -340,10 +340,44 @@ li {
     gap: 14px;
 }
 
+.release-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+}
+
 .release-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 18px;
+    align-items: center;
+}
+
+.download-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.download-card {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+}
+
+.download-card.disabled {
+    opacity: .72;
+}
+
+.download-card-header {
+    display: grid;
+    gap: 6px;
+}
+
+.checksum-card {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
 }
 
@@ -495,7 +529,10 @@ code {
     .grid,
     .two-column,
     .docs-layout,
+    .download-options,
+    .release-summary,
     .release-card,
+    .checksum-card,
     .linktree-panel {
         grid-template-columns: 1fr;
     }
