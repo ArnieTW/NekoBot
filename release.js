@@ -16,7 +16,7 @@
     };
 
     const preferredAssetPattern = /\.(zip|msi|exe|7z)$/i;
-    const runtimeReleasePattern = /^runtimes\b/i;
+    const runtimeReleasePattern = /^runtimes/i;
     const packageKinds = [
         {
             key: "windows",
