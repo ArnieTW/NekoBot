@@ -15,7 +15,7 @@
         status: "[data-release-status]"
     };
 
-    const preferredAssetPattern = /\.(zip|msi|exe|7z)$/i;
+    const preferredAssetPattern = /\.(zip|msi|exe|7z|tar\.gz)$/i;
     const runtimeReleasePattern = /^runtimes/i;
     const packageKinds = [
         {
@@ -23,21 +23,21 @@
             title: "Windows x64",
             kicker: "Recommended",
             description: "Tray-enabled Windows build. Use this for normal desktop streaming setups.",
-            pattern: /NekoBot-win-x64-tray-cpu-.+\.zip$/i
+            pattern: /^NekoBot-win-x64-.+\.(zip|msi|exe)$/i
         },
         {
-            key: "linux-gui",
-            title: "Linux x64 GUI",
+            key: "linux",
+            title: "Linux x64",
             kicker: "Testing",
-            description: "Linux desktop build with the GUI tray-style control. This build is prepared for testing.",
-            pattern: /NekoBot-linux-x64-gui-cpu-.+\.zip$/i
+            description: "Linux desktop build with the local setup UI. This build is prepared for testing.",
+            pattern: /^NekoBot-linux-(?!headless).+\.(tar\.gz|zip)$/i
         },
         {
             key: "linux-headless",
             title: "Linux x64 Headless",
             kicker: "Server",
             description: "Linux build without a local tray UI. Manage it from the web setup page.",
-            pattern: /NekoBot-linux-x64-headless-cpu-.+\.zip$/i
+            pattern: /^NekoBot-linux-headless-.+\.(tar\.gz|zip)$/i
         }
     ];
 
@@ -178,7 +178,7 @@
     }
 
     function findChecksumAsset(release) {
-        return findAsset(release, /^SHA256SUMS-.+\.txt$/i) || findAsset(release, /^SHA256SUMS\.txt$/i);
+        return findAsset(release, /^SHA256SUMS\.txt$/i) || findAsset(release, /^SHA256SUMS-.+\.txt$/i);
     }
 
     function renderDownloadOptions(release) {
