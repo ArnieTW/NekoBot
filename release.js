@@ -1,9 +1,9 @@
 (function () {
     const owner = "ArnieTW";
     const repo = "NekoBot";
-    const latestReleaseUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
-    const fallbackUrl = `https://github.com/${owner}/${repo}/releases/latest`;
     const allReleasesUrl = `https://github.com/${owner}/${repo}/releases`;
+    const releasesApiUrl = `https://api.github.com/repos/${owner}/${repo}/releases?per_page=20`;
+    const fallbackUrl = allReleasesUrl;
 
     const selectors = {
         title: "[data-release-title]",
@@ -16,6 +16,7 @@
     };
 
     const preferredAssetPattern = /\.(zip|msi|exe|7z)$/i;
+    const runtimeReleasePattern = /^runtimes\b/i;
     const packageKinds = [
         {
             key: "windows",
@@ -168,6 +169,14 @@
         return assets.find((asset) => pattern.test(asset.name || ""));
     }
 
+    function isRuntimeRelease(release) {
+        return runtimeReleasePattern.test(release?.tag_name || "") || runtimeReleasePattern.test(release?.name || "");
+    }
+
+    function selectAppRelease(releases) {
+        return (Array.isArray(releases) ? releases : []).find((release) => !isRuntimeRelease(release));
+    }
+
     function findChecksumAsset(release) {
         return findAsset(release, /^SHA256SUMS-.+\.txt$/i) || findAsset(release, /^SHA256SUMS\.txt$/i);
     }
@@ -269,7 +278,7 @@
 
     async function loadRelease() {
         try {
-            const response = await fetch(latestReleaseUrl, {
+            const response = await fetch(releasesApiUrl, {
                 headers: {
                     Accept: "application/vnd.github+json"
                 }
@@ -279,7 +288,12 @@
                 throw new Error(`GitHub returned ${response.status}`);
             }
 
-            applyRelease(await response.json());
+            const release = selectAppRelease(await response.json());
+            if (!release) {
+                throw new Error("No app release was found.");
+            }
+
+            applyRelease(release);
         } catch (error) {
             applyFallback();
         }
