@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "tier": "Basic",
+  "updatedAt": "2026-06-01T00:00:00Z",
+  "features": {
+    "tts": {
+      "enabled": true,
+      "cosyVoice300M": true,
+      "cosyVoice300MSft": true,
+      "cosyVoice300MInstruct": true,
+      "cosyVoice2": true,
+      "cosyVoice3": true
+    },
+    "boxes": {
+      "sourcedBox": true,
+      "group": true
+    },
+    "sources": {
+      "text": true,
+      "image": true,
+      "video": true,
+      "audio": true,
+      "iFrame": true,
+      "tts": true,
+      "wheelPicker": true,
+      "layeredSource": true
+    },
+    "flags": {}
+  }
+}
