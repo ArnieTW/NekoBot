@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot - OBS Stream Overlays, Streamer.bot Triggers, and Local TTS</title>
+    <title>NekoBot - Custom OBS Stream Overlays, Viewer Triggers, Chat Rewards, and Local TTS</title>
     <link rel="icon" type="image/png" href="./assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
-    <meta name="description" content="NekoBot is a streaming overlay companion for OBS with full-scene browser overlays, Streamer.bot trigger bindings, reusable media sources, and optional local TTS." />
-    <meta name="keywords" content="NekoBot, OBS overlay, Streamer.bot, streaming overlay, browser source, Twitch bot, stream effects, TTS, CosyVoice, media commands" />
+    <meta name="description" content="NekoBot supercharges your stream with highly customizable OBS overlays, viewer-triggered effects, Twitch and Kick chat integrations, channel rewards, command flows, reusable media sources, and local CosyVoice TTS." />
+    <meta name="keywords" content="NekoBot, OBS overlay, Twitch connector, Kick connector, Streamer.bot, channel rewards, chat monitor, command triggers, streaming overlay, browser source, TTS, CosyVoice" />
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot - OBS Stream Overlays, Streamer.bot Triggers, and Local TTS" />
-    <meta property="og:description" content="NekoBot is a streaming overlay companion for OBS with full-scene browser overlays, Streamer.bot trigger bindings, reusable media sources, and optional local TTS." />
+    <meta property="og:title" content="NekoBot - Custom OBS Stream Overlays, Viewer Triggers, Chat Rewards, and Local TTS" />
+    <meta property="og:description" content="NekoBot supercharges your stream with highly customizable OBS overlays, viewer-triggered effects, Twitch and Kick chat integrations, channel rewards, command flows, reusable media sources, and local CosyVoice TTS." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot - OBS Stream Overlays, Streamer.bot Triggers, and Local TTS" />
-    <meta name="twitter:description" content="NekoBot is a streaming overlay companion for OBS with full-scene browser overlays, Streamer.bot trigger bindings, reusable media sources, and optional local TTS." />
+    <meta name="twitter:title" content="NekoBot - Custom OBS Stream Overlays, Viewer Triggers, Chat Rewards, and Local TTS" />
+    <meta name="twitter:description" content="NekoBot supercharges your stream with highly customizable OBS overlays, viewer-triggered effects, Twitch and Kick chat integrations, channel rewards, command flows, reusable media sources, and local CosyVoice TTS." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="./sitemap.xml" />
 <!-- /SEO -->
@@ -30,7 +30,7 @@
       "name": "NekoBot",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Windows",
-      "description": "NekoBot is a streaming overlay companion for OBS with full-scene browser overlays, Streamer.bot trigger bindings, reusable media sources, and optional local TTS.",
+      "description": "NekoBot supercharges your stream with highly customizable OBS overlays, viewer-triggered effects, Twitch and Kick chat integrations, channel rewards, command flows, reusable media sources, and local CosyVoice TTS.",
       "url": "https://arnietw.github.io/NekoBot/",
       "image": "https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png",
       "author": {
@@ -46,7 +46,9 @@
       ],
       "featureList": [
         "OBS browser-source overlays",
-        "Streamer.bot trigger binding",
+        "Twitch, Kick, and Streamer.bot connectors",
+        "Chat monitoring and channel rewards",
+        "Command trigger binding",
         "Reusable media sources",
         "Local CosyVoice TTS support",
         "Overlay box inspector and source dialogs"
@@ -80,12 +82,13 @@
         </nav>
 
         <header class="hero">
-            <p class="kicker">Streaming overlay companion</p>
-            <h1>Build HTTP overlays, bind triggers, and keep stream effects under control.</h1>
-            <p class="lead">NekoBot provides browser-source overlays for tools like OBS, Streamer.bot integration, source management, and optional local TTS support.</p>
+            <p class="kicker">NekoBot stream overlay engine</p>
+            <h1>Supercharge your stream and viewer experience with highly customizable OBS overlays.</h1>
+            <p class="lead">NekoBot lets you build one full-scene browser overlay, fill it with triggered text, media, audio, video, and TTS boxes, then drive those effects from Twitch, Kick, Streamer.bot, chat commands, channel rewards, and local action flows.</p>
             <div class="button-row">
                 <a class="button primary" href="./releases/">Download latest release</a>
                 <a class="button" href="docs/index.html">Read documentation</a>
+                <a class="button" href="./docs/connectors.html">Connect platforms</a>
                 <a class="button" href="./docs/examples.html">View examples</a>
                 <a class="button" href="https://linktr.ee/ArnieTW">Find ArnieTW</a>
             </div>
@@ -93,27 +96,28 @@
 
         <section class="section grid" aria-label="Highlights">
             <article class="card">
-                <h3>HTTP Overlays</h3>
-                <p>Create one full-scene browser overlay in OBS, then place triggered boxes inside it for stream effects.</p>
+                <h3>Overlay Studio</h3>
+                <p>Create one full-scene browser overlay in OBS, then place triggered boxes inside it for memes, alerts, captions, sound cues, videos, and TTS moments.</p>
             </article>
             <article class="card">
-                <h3>Trigger Binding</h3>
-                <p>Bind boxes to Streamer.bot events, commands, and actions, then show the selected meme, media cue, text, URL, or TTS source when a trigger arrives.</p>
+                <h3>Connectors</h3>
+                <p>Connect Streamer.bot, Twitch, and Kick so NekoBot can receive chat, reward, command, and platform events.</p>
             </article>
             <article class="card">
-                <h3>Local Setup</h3>
-                <p>Configure overlays, sources, Streamer.bot, logs, and TTS from the local setup interface.</p>
+                <h3>Command Triggers</h3>
+                <p>Create NekoBot triggers, add cooldowns, bind connector events, and drive overlay boxes, chat replies, waits, logic, and other action chains.</p>
             </article>
         </section>
 
         <section class="section two-column">
             <div class="panel">
                 <h2>Get Started</h2>
-                <p>Download a release package, run NekoBot, then open the setup page from the tray menu. From there you can create one overlay for a stream scene, add boxes for different triggered effects, connect Streamer.bot, and copy the overlay URL into OBS.</p>
+                <p>Download a release package, run NekoBot, then open the setup page from the tray menu. From there you can connect platforms, create one overlay for a stream scene, add boxes for different triggered effects, monitor chat, define channel rewards, and copy the overlay URL into OBS.</p>
                 <img class="screenshot" src="./assets/screenshots/setup-home.png" alt="NekoBot setup home screen" />
                 <div class="button-row">
                     <a class="button primary" href="./docs/download-install.html">Installation guide</a>
                     <a class="button" href="./docs/overlay-setup.html">Overlay setup</a>
+                    <a class="button" href="./docs/command-triggers.html">Command triggers</a>
                 </div>
             </div>
             <div class="panel notice">

@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Quick Setup - Streamer.bot, OBS Overlay, Text and Media Boxes</title>
+    <title>NekoBot Quick Setup - Connectors, OBS Overlay, Text and Media Boxes</title>
     <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
-    <meta name="description" content="Fast setup guide for connecting Streamer.bot, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
+    <meta name="description" content="Fast setup guide for connecting a streaming platform, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
     <meta name="keywords" content="NekoBot, OBS overlay, Streamer.bot, streaming overlay, browser source, Twitch bot, stream effects, TTS, CosyVoice, media commands" />
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/quick-setup.html" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Quick Setup - Streamer.bot, OBS Overlay, Text and Media Boxes" />
-    <meta property="og:description" content="Fast setup guide for connecting Streamer.bot, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
+    <meta property="og:title" content="NekoBot Quick Setup - Connectors, OBS Overlay, Text and Media Boxes" />
+    <meta property="og:description" content="Fast setup guide for connecting a streaming platform, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/quick-setup.html" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Quick Setup - Streamer.bot, OBS Overlay, Text and Media Boxes" />
-    <meta name="twitter:description" content="Fast setup guide for connecting Streamer.bot, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
+    <meta name="twitter:title" content="NekoBot Quick Setup - Connectors, OBS Overlay, Text and Media Boxes" />
+    <meta name="twitter:description" content="Fast setup guide for connecting a streaming platform, creating one OBS browser overlay, adding text boxes, and adding media source boxes in NekoBot." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
 <!-- /SEO -->
@@ -42,16 +42,20 @@
                     <a class="tree-item root" href="index.html">Overview</a>
                     <a class="tree-item root" href="download-install.html">Download & Install</a>
                     <a class="tree-item root active" href="quick-setup.html">Quick Setup</a>
-                    <a class="tree-item nested active" href="#streamerbot-connection">1. Connect Streamer.bot</a>
+                    <a class="tree-item nested active" href="#streamerbot-connection">1. Connect A Platform</a>
                     <a class="tree-item nested" href="#create-overlay">2. Create Overlay</a>
                     <a class="tree-item nested" href="#text-source-box">3. Add Text Box</a>
                     <a class="tree-item nested" href="#media-source-box">4. Add Media Source Box</a>
                     <a class="tree-item nested" href="#what-this-builds">What this builds</a>
                     <div class="tree-group">
-                        <div class="tree-heading">Landing Pages</div>
+                        <div class="tree-heading">Setup Pages</div>
                         <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
-                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="connectors.html">Connectors</a>
+                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
+                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
+                        <a class="tree-item" href="chat.html">Chat</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot Connector</a>
+                        <a class="tree-item" href="tts.html">CosyVoice TTS</a>
                         <a class="tree-item" href="manage-sources.html">Manage Sources</a>
                         <a class="tree-item" href="settings.html">Settings</a>
                     </div>
@@ -84,19 +88,18 @@
                 </section>
 
                 <section class="panel" id="streamerbot-connection">
-                    <h2>1. Connect Streamer.bot</h2>
-                    <img class="screenshot" src="../assets/screenshots/streamerbot-setup.png" alt="Streamer.bot setup page" />
-                    <p>Connect Streamer.bot first so NekoBot can load the trigger catalog before you bind commands, actions, or raw subscribed events to boxes.</p>
+                    <h2>1. Connect A Platform</h2>
+                    <img class="screenshot" src="../assets/screenshots/connectors.png" alt="NekoBot Connectors setup page" />
+                    <p>Connect at least one platform first so NekoBot can receive chat, reward, command, or raw connector events before you bind triggers to boxes.</p>
                     <ol class="step-list">
-                        <li>In Streamer.bot, enable the WebSocket server.</li>
-                        <li>Open NekoBot Setup Home and choose <code>Streamer.bot Setup</code>.</li>
-                        <li>Turn on <code>Enable Streamer.bot bridge</code>.</li>
-                        <li>Enter the WebSocket URL, usually <code>ws://127.0.0.1:8080/</code> when Streamer.bot runs on the same machine.</li>
-                        <li>Enter the WebSocket password if your Streamer.bot server requires one.</li>
-                        <li>Save settings, then use <code>Reconnect</code> or <code>Refresh</code> to verify the bridge is connected.</li>
-                        <li>Click <code>Load events</code> and select the event groups you want NekoBot to receive.</li>
+                        <li>Open NekoBot Setup Home and choose <code>Connectors</code>.</li>
+                        <li>Add or select the connector you want to use: Streamer.bot, Twitch, or Kick.</li>
+                        <li>Enable the connector and complete any required WebSocket or account settings.</li>
+                        <li>For Streamer.bot, enable the Streamer.bot WebSocket server and use a URL such as <code>ws://127.0.0.1:8080/</code>.</li>
+                        <li>Use the setup header connector status to confirm the connector is online.</li>
+                        <li>Open <a href="command-triggers.html">Command Triggers</a> when you need NekoBot-owned triggers, cooldowns, channel reward handling, or action flows.</li>
                     </ol>
-                    <p>For the full setup and troubleshooting details, see <a href="streamerbot.html">Streamer.bot Setup</a>.</p>
+                    <p>For the current connector overview, see <a href="connectors.html">Connectors</a>. For Streamer.bot-specific notes, see <a href="streamerbot.html">Streamer.bot Connector</a>.</p>
                 </section>
 
                 <section class="panel" id="create-overlay">
@@ -150,7 +153,7 @@
                     <p>Quick Setup is not a separate feature from the other landing pages. It is a guided path through the first useful setup.</p>
                     <div class="token-table" role="table" aria-label="Quick Setup result map">
                         <div role="row"><strong role="cell">Result</strong><strong role="cell">Where to go deeper</strong></div>
-                        <div role="row"><code role="cell">Streamer.bot bridge</code><span role="cell">The connection created in step 1 is managed on <a href="streamerbot.html">Streamer.bot Setup</a>.</span></div>
+                        <div role="row"><code role="cell">Connector</code><span role="cell">The connection created in step 1 is managed on <a href="connectors.html">Connectors</a>, with Streamer.bot-specific details on <a href="streamerbot.html">Streamer.bot Connector</a>.</span></div>
                         <div role="row"><code role="cell">One OBS overlay</code><span role="cell">The overlay created in step 2 is explained on <a href="overlay-setup.html">Overlay Setup</a> and the <a href="component-overlay.html">Overlay</a> component page.</span></div>
                         <div role="row"><code role="cell">Text box</code><span role="cell">The text example uses the <a href="component-add-source-dialog.html">Add Source Dialog</a>, <a href="component-box.html">Box</a>, and <a href="component-add-trigger.html">Add Trigger</a> controls.</span></div>
                         <div role="row"><code role="cell">Media box</code><span role="cell">The media example uses the same overlay, proving that OBS only needs one NekoBot browser source for multiple effects.</span></div>

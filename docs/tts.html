@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot TTS Setup - Local CosyVoice Models and Voice Cloning</title>
+    <title>NekoBot CosyVoice TTS - Local Models and Voice Cloning</title>
     <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
     <meta name="description" content="Configure local CosyVoice TTS models in NekoBot, enable runtimes, clone voices, test speech, and create TTS overlay sources." />
@@ -11,13 +11,13 @@
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/tts.html" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot TTS Setup - Local CosyVoice Models and Voice Cloning" />
+    <meta property="og:title" content="NekoBot CosyVoice TTS - Local Models and Voice Cloning" />
     <meta property="og:description" content="Configure local CosyVoice TTS models in NekoBot, enable runtimes, clone voices, test speech, and create TTS overlay sources." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/tts.html" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot TTS Setup - Local CosyVoice Models and Voice Cloning" />
+    <meta name="twitter:title" content="NekoBot CosyVoice TTS - Local Models and Voice Cloning" />
     <meta name="twitter:description" content="Configure local CosyVoice TTS models in NekoBot, enable runtimes, clone voices, test speech, and create TTS overlay sources." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
@@ -43,10 +43,14 @@
                     <a class="tree-item root" href="download-install.html">Download & Install</a>
                     <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
                     <div class="tree-group">
-                        <div class="tree-heading">Landing Pages</div>
+                        <div class="tree-heading">Setup Pages</div>
                         <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
-                        <a class="tree-item active" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="connectors.html">Connectors</a>
+                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
+                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
+                        <a class="tree-item" href="chat.html">Chat</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot Connector</a>
+                        <a class="tree-item active" href="tts.html">CosyVoice TTS</a>
                         <a class="tree-item nested active" href="#model-setup">Model setup</a>
                         <a class="tree-item nested" href="#model-controls">Model controls</a>
                         <a class="tree-item nested" href="#voice-cloning">Voice cloning</a>
@@ -81,16 +85,16 @@
             <article class="doc-content">
                 <section>
                     <p class="kicker">Voice</p>
-                    <h1>TTS Setup</h1>
+                    <h1>CosyVoice TTS</h1>
                     <p class="lead">NekoBot can run local CosyVoice TTS models for generated voice sources, test audio, and saved cloned voices.</p>
                 </section>
 
                 <section class="panel" id="model-setup">
                     <h2>Model Setup</h2>
-                    <img class="screenshot" src="../assets/screenshots/tts-setup.png" alt="TTS setup page" />
-                    <p>The TTS Setup page lists every CosyVoice model NekoBot can use. Each model card shows whether it is downloaded, whether it is running, what features it supports, and which runtime settings will be used when the model is enabled.</p>
+                    <img class="screenshot" src="../assets/screenshots/tts-setup.png" alt="CosyVoice TTS setup page" />
+                    <p>The CosyVoice TTS page lists every local voice model NekoBot can use. Each model card shows whether it is downloaded, whether it is running, what features it supports, and which runtime settings will be used when the model is enabled.</p>
                     <ol class="step-list">
-                        <li>Open TTS Setup from Setup Home.</li>
+                        <li>Open CosyVoice TTS from Setup Home.</li>
                         <li>Choose the Default Model used when a TTS source has no model override.</li>
                         <li>Pick runtime settings for the model you want to use.</li>
                         <li>Click Enable. Downloaded models can start immediately; missing models need to download first.</li>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Streamer.bot Setup - Commands, Actions, and Raw Event Triggers</title>
+    <title>NekoBot Streamer.bot Connector - Commands, Actions, and Raw Event Triggers</title>
     <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
     <meta name="description" content="Connect NekoBot to Streamer.bot through WebSocket, subscribe to events, inspect bound triggers, and use commands, actions, and raw events." />
@@ -11,13 +11,13 @@
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/streamerbot.html" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Streamer.bot Setup - Commands, Actions, and Raw Event Triggers" />
+    <meta property="og:title" content="NekoBot Streamer.bot Connector - Commands, Actions, and Raw Event Triggers" />
     <meta property="og:description" content="Connect NekoBot to Streamer.bot through WebSocket, subscribe to events, inspect bound triggers, and use commands, actions, and raw events." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/streamerbot.html" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Streamer.bot Setup - Commands, Actions, and Raw Event Triggers" />
+    <meta name="twitter:title" content="NekoBot Streamer.bot Connector - Commands, Actions, and Raw Event Triggers" />
     <meta name="twitter:description" content="Connect NekoBot to Streamer.bot through WebSocket, subscribe to events, inspect bound triggers, and use commands, actions, and raw events." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
@@ -43,9 +43,13 @@
                     <a class="tree-item root" href="download-install.html">Download & Install</a>
                     <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
                     <div class="tree-group">
-                        <div class="tree-heading">Landing Pages</div>
+                        <div class="tree-heading">Setup Pages</div>
                         <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item active" href="streamerbot.html">Streamer.bot</a>
+                        <a class="tree-item" href="connectors.html">Connectors</a>
+                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
+                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
+                        <a class="tree-item" href="chat.html">Chat</a>
+                        <a class="tree-item active" href="streamerbot.html">Streamer.bot Connector</a>
                         <a class="tree-item nested active" href="#connection">Connection</a>
                         <a class="tree-item nested" href="#connection-controls">Connection controls</a>
                         <a class="tree-item nested" href="#events">Events</a>
@@ -53,7 +57,7 @@
                         <a class="tree-item nested" href="#trigger-types">Trigger types</a>
                         <a class="tree-item nested" href="#example">Example</a>
                         <a class="tree-item nested" href="#troubleshooting">Troubleshooting</a>
-                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="tts.html">CosyVoice TTS</a>
                         <a class="tree-item" href="manage-sources.html">Manage Sources</a>
                         <a class="tree-item" href="settings.html">Settings</a>
                     </div>
@@ -81,17 +85,17 @@
             <article class="doc-content">
                 <section>
                     <p class="kicker">Integration</p>
-                    <h1>Streamer.bot Setup</h1>
-                    <p class="lead">Streamer.bot provides the events, commands, and actions that NekoBot can bind to overlay boxes.</p>
+                    <h1>Streamer.bot Connector</h1>
+                    <p class="lead">Streamer.bot provides the events, commands, and actions that NekoBot can bind to overlay boxes and command trigger flows.</p>
                 </section>
 
                 <section class="panel" id="connection">
                     <h2>Connection</h2>
                     <img class="screenshot" src="../assets/screenshots/streamerbot-setup.png" alt="Streamer.bot setup page" />
-                    <p>The Streamer.bot bridge keeps NekoBot connected to Streamer.bot's WebSocket server. Once connected, NekoBot can subscribe to event groups and expose those events as overlay triggers.</p>
+                    <p>The Streamer.bot connector keeps NekoBot connected to Streamer.bot's WebSocket server. Once connected, NekoBot can subscribe to event groups and expose those events as overlay triggers.</p>
                     <ol class="step-list">
                         <li>In Streamer.bot, enable the WebSocket server.</li>
-                        <li>Open NekoBot Setup Home and choose Streamer.bot Setup.</li>
+                        <li>Open NekoBot Setup Home and choose <a href="connectors.html">Connectors</a>, then select the Streamer.bot connector.</li>
                         <li>Turn on <code>Enable Streamer.bot bridge</code>.</li>
                         <li>Enter the WebSocket URL, usually <code>ws://127.0.0.1:8080/</code> when Streamer.bot runs on the same machine.</li>
                         <li>Enter the WebSocket password if your Streamer.bot server requires one.</li>

@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Documentation - User Guide</title>
+    <title>NekoBot Documentation - Overlay Studio, Connectors, Chat, Rewards, and Triggers</title>
     <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
-    <meta name="description" content="NekoBot documentation for installing the app, creating OBS overlays, connecting Streamer.bot, managing sources, configuring TTS, and troubleshooting." />
-    <meta name="keywords" content="NekoBot, OBS overlay, Streamer.bot, streaming overlay, browser source, Twitch bot, stream effects, TTS, CosyVoice, media commands" />
+    <meta name="description" content="NekoBot documentation for installing the app, creating OBS overlays, configuring Twitch, Kick, and Streamer.bot connectors, chat, channel rewards, command triggers, sources, CosyVoice TTS, and settings." />
+    <meta name="keywords" content="NekoBot, OBS overlay, Twitch connector, Kick connector, Streamer.bot, channel rewards, chat monitor, command triggers, TTS, CosyVoice" />
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/index.html" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Documentation - User Guide" />
-    <meta property="og:description" content="NekoBot documentation for installing the app, creating OBS overlays, connecting Streamer.bot, managing sources, configuring TTS, and troubleshooting." />
+    <meta property="og:title" content="NekoBot Documentation - Overlay Studio, Connectors, Chat, Rewards, and Triggers" />
+    <meta property="og:description" content="NekoBot documentation for installing the app, creating OBS overlays, configuring Twitch, Kick, and Streamer.bot connectors, chat, channel rewards, command triggers, sources, CosyVoice TTS, and settings." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/index.html" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Documentation - User Guide" />
-    <meta name="twitter:description" content="NekoBot documentation for installing the app, creating OBS overlays, connecting Streamer.bot, managing sources, configuring TTS, and troubleshooting." />
+    <meta name="twitter:title" content="NekoBot Documentation - Overlay Studio, Connectors, Chat, Rewards, and Triggers" />
+    <meta name="twitter:description" content="NekoBot documentation for installing the app, creating OBS overlays, configuring Twitch, Kick, and Streamer.bot connectors, chat, channel rewards, command triggers, sources, CosyVoice TTS, and settings." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
 <!-- /SEO -->
@@ -45,10 +45,14 @@
                     <a class="tree-item root" href="download-install.html">Download & Install</a>
                     <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
                     <div class="tree-group">
-                        <div class="tree-heading">Landing Pages</div>
+                        <div class="tree-heading">Setup Pages</div>
                         <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
-                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="connectors.html">Connectors</a>
+                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
+                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
+                        <a class="tree-item" href="chat.html">Chat</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot Connector</a>
+                        <a class="tree-item" href="tts.html">CosyVoice TTS</a>
                         <a class="tree-item" href="manage-sources.html">Manage Sources</a>
                         <a class="tree-item" href="settings.html">Settings</a>
                     </div>
@@ -77,7 +81,7 @@
                 <section>
                     <p class="kicker">Documentation</p>
                     <h1>NekoBot User Guide</h1>
-                    <p class="lead">This documentation covers the public release workflow and user-facing setup. It does not include internal implementation details.</p>
+                    <p class="lead">This documentation covers the public release workflow and user-facing setup: overlays, connectors, chat, rewards, command triggers, reusable sources, CosyVoice TTS, and settings.</p>
                 </section>
 
                 <section class="grid" id="guide-map">
@@ -87,15 +91,31 @@
                     </a>
                     <a class="card" href="quick-setup.html">
                         <h3>Quick Setup</h3>
-                        <p>Connect Streamer.bot, create one OBS overlay, then add text and media boxes inside it.</p>
+                        <p>Connect a platform, create one OBS overlay, then add text and media boxes inside it.</p>
                     </a>
                     <a class="card" href="overlay-setup.html">
                         <h3>Overlay Setup</h3>
                         <p>Create one full-scene OBS overlay with multiple triggered boxes inside it.</p>
                     </a>
                     <a class="card" href="streamerbot.html">
-                        <h3>Streamer.bot</h3>
-                        <p>Connect Streamer.bot and bind triggers.</p>
+                        <h3>Streamer.bot Connector</h3>
+                        <p>Bridge existing Streamer.bot workflows into NekoBot's connector model.</p>
+                    </a>
+                    <a class="card" href="connectors.html">
+                        <h3>Connectors</h3>
+                        <p>Manage Streamer.bot, Twitch, and Kick connector instances and connection state.</p>
+                    </a>
+                    <a class="card" href="command-triggers.html">
+                        <h3>Command Triggers</h3>
+                        <p>Create NekoBot triggers, cooldowns, connector event bindings, and action flows.</p>
+                    </a>
+                    <a class="card" href="channel-rewards.html">
+                        <h3>Channel Rewards</h3>
+                        <p>Define shared rewards and map them to Twitch or Kick connector reward settings.</p>
+                    </a>
+                    <a class="card" href="chat.html">
+                        <h3>Chat</h3>
+                        <p>Monitor messages coming from connected chat-capable connectors.</p>
                     </a>
                     <a class="card" href="manage-sources.html">
                         <h3>Manage Sources</h3>
@@ -117,13 +137,13 @@
 
                 <section class="panel" id="setup-home">
                     <h2>Setup Home</h2>
-                    <p>The setup home is the starting point for overlay editing, Streamer.bot configuration, TTS, source management, and app settings.</p>
+                    <p>The setup home is the starting point for overlay editing, connector status, command triggers, chat, rewards, CosyVoice TTS, source management, and app settings.</p>
                     <img class="screenshot" src="../assets/screenshots/setup-home.png" alt="NekoBot setup home screen" />
                     <div class="token-table" role="table" aria-label="Documentation guide map">
                         <div role="row"><strong role="cell">Page</strong><strong role="cell">When to use it</strong></div>
                         <div role="row"><code role="cell">Download & Install</code><span role="cell">Use first. It explains where the release comes from, how to launch the app, and how to reach Setup Home.</span></div>
                         <div role="row"><code role="cell">Quick Setup</code><span role="cell">Use after install. It walks through the first Streamer.bot bridge, OBS overlay, text box, and media box.</span></div>
-                        <div role="row"><code role="cell">Landing Pages</code><span role="cell">Use when you need page-level explanations for Overlay Setup, Streamer.bot Setup, TTS Setup, Manage Sources, or Settings.</span></div>
+                        <div role="row"><code role="cell">Setup Pages</code><span role="cell">Use when you need page-level explanations for Overlay Setup, Connectors, Command Triggers, Channel Rewards, Chat, CosyVoice TTS, Manage Sources, or Settings.</span></div>
                         <div role="row"><code role="cell">Components</code><span role="cell">Use when you need detailed explanations of a specific UI component or dialog.</span></div>
                         <div role="row"><code role="cell">Examples</code><span role="cell">Use when you want a recipe for a specific overlay behavior.</span></div>
                         <div role="row"><code role="cell">Troubleshooting</code><span role="cell">Use when something fails to connect, render, trigger, play, or synthesize.</span></div>

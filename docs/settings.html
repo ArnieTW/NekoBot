@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Settings - App Port, Updates, Logging, and Daily Logs</title>
+    <title>NekoBot Settings - Endpoint, Trigger Processing, Updates, and Logs</title>
     <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
 <!-- SEO -->
-    <meta name="description" content="Configure NekoBot app settings, update checks, logging level, local port, log viewer, log refresh, and log cleanup." />
+    <meta name="description" content="Configure NekoBot host and port, trigger processing limits, external access, CUDA runtime update behavior, logging level, and daily logs." />
     <meta name="keywords" content="NekoBot, OBS overlay, Streamer.bot, streaming overlay, browser source, Twitch bot, stream effects, TTS, CosyVoice, media commands" />
     <meta name="author" content="ArnieTW" />
     <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/settings.html" />
     <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Settings - App Port, Updates, Logging, and Daily Logs" />
-    <meta property="og:description" content="Configure NekoBot app settings, update checks, logging level, local port, log viewer, log refresh, and log cleanup." />
+    <meta property="og:title" content="NekoBot Settings - Endpoint, Trigger Processing, Updates, and Logs" />
+    <meta property="og:description" content="Configure NekoBot host and port, trigger processing limits, external access, CUDA runtime update behavior, logging level, and daily logs." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/settings.html" />
     <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Settings - App Port, Updates, Logging, and Daily Logs" />
-    <meta name="twitter:description" content="Configure NekoBot app settings, update checks, logging level, local port, log viewer, log refresh, and log cleanup." />
+    <meta name="twitter:title" content="NekoBot Settings - Endpoint, Trigger Processing, Updates, and Logs" />
+    <meta name="twitter:description" content="Configure NekoBot host and port, trigger processing limits, external access, CUDA runtime update behavior, logging level, and daily logs." />
     <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
     <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
 <!-- /SEO -->
@@ -43,16 +43,21 @@
                     <a class="tree-item root" href="download-install.html">Download & Install</a>
                     <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
                     <div class="tree-group">
-                        <div class="tree-heading">Landing Pages</div>
+                        <div class="tree-heading">Setup Pages</div>
                         <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item" href="streamerbot.html">Streamer.bot</a>
-                        <a class="tree-item" href="tts.html">TTS setup</a>
+                        <a class="tree-item" href="connectors.html">Connectors</a>
+                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
+                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
+                        <a class="tree-item" href="chat.html">Chat</a>
+                        <a class="tree-item" href="streamerbot.html">Streamer.bot Connector</a>
+                        <a class="tree-item" href="tts.html">CosyVoice TTS</a>
                         <a class="tree-item" href="manage-sources.html">Manage Sources</a>
                         <a class="tree-item active" href="settings.html">Settings</a>
-                        <a class="tree-item nested active" href="#app-settings">App settings</a>
+                        <a class="tree-item nested active" href="#app-settings">App Endpoint</a>
+                        <a class="tree-item nested" href="#trigger-processing">Trigger Processing</a>
+                        <a class="tree-item nested" href="#external-access">External Access</a>
                         <a class="tree-item nested" href="#updates">Updates</a>
                         <a class="tree-item nested" href="#logs">Logs</a>
-                        <a class="tree-item nested" href="#log-cleanup">Log cleanup</a>
                     </div>
                     <div class="tree-group">
                         <div class="tree-heading">Components</div>
@@ -79,39 +84,66 @@
                 <section>
                     <p class="kicker">App</p>
                     <h1>Settings</h1>
-                    <p class="lead">Settings controls the local app port, logging level, GitHub update flow, and daily log files.</p>
+                    <p class="lead">Settings controls the local endpoint, trigger queue behavior, external access, update flow, CUDA runtime install behavior, and daily log files.</p>
                 </section>
 
                 <section class="panel" id="app-settings">
-                    <h2>App Settings</h2>
+                    <h2>App Endpoint</h2>
                     <img class="screenshot" src="../assets/screenshots/settings.png" alt="Settings and log viewer page" />
-                    <p>Use App Settings when you need to change how the local setup server runs or how much detail NekoBot writes to logs.</p>
-                    <div class="token-table" role="table" aria-label="App settings controls">
+                    <p>Use App Endpoint when you need to change how the local setup server is reached. These values affect setup pages, overlay viewer URLs, and OBS browser-source URLs.</p>
+                    <div class="token-table" role="table" aria-label="App endpoint controls">
                         <div role="row"><strong role="cell">Control</strong><strong role="cell">What it means</strong></div>
-                        <div role="row"><code role="cell">App port</code><span role="cell">The local HTTP port used by NekoBot setup pages and overlay URLs. Changing it may require updating saved OBS browser-source URLs.</span></div>
-                        <div role="row"><code role="cell">Logging</code><span role="cell">Controls log detail. Use more verbose logging when diagnosing an issue, then reduce it again for normal use.</span></div>
-                        <div role="row"><code role="cell">Save settings</code><span role="cell">Writes app settings. If the page shows the restart hint, restart NekoBot before expecting the change to apply.</span></div>
+                        <div role="row"><code role="cell">Host</code><span role="cell">The hostname NekoBot uses for local setup and viewer links. Leave it as <code>localhost</code> for normal same-PC use.</span></div>
+                        <div role="row"><code role="cell">App Port</code><span role="cell">The local HTTP port used by NekoBot setup pages and overlay URLs. Changing it may require updating saved OBS browser-source URLs.</span></div>
+                        <div role="row"><code role="cell">Save settings</code><span role="cell">Writes endpoint, trigger processing, external access, and runtime update choices. If the page shows the restart hint, restart NekoBot before expecting the change to apply.</span></div>
                         <div role="row"><code role="cell">Restart hint</code><span role="cell">Appears when a saved setting needs the app process to restart.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="trigger-processing">
+                    <h2>Trigger Processing</h2>
+                    <p>Trigger Processing decides how much trigger work NekoBot can queue and run at once. Increase these only when you understand the load your overlays, chat commands, TTS, and media actions create.</p>
+                    <div class="token-table" role="table" aria-label="Trigger processing controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it means</strong></div>
+                        <div role="row"><code role="cell">Queue Capacity</code><span role="cell">Maximum waiting trigger jobs before new work is rejected. Higher values tolerate bursts but can let old events pile up.</span></div>
+                        <div role="row"><code role="cell">Max Parallel Triggers</code><span role="cell">How many trigger flows can execute at the same time. Higher values feel more responsive during bursts but can increase CPU, I/O, and connector pressure.</span></div>
+                        <div role="row"><code role="cell">Default Max Length</code><span role="cell">Default maximum runtime for a trigger flow. Use it to prevent a broken or long-running action chain from hanging forever.</span></div>
+                        <div role="row"><code role="cell">Max Active TTS Requests</code><span role="cell">Caps concurrent TTS generation so voice requests do not overwhelm the local model runtime.</span></div>
+                    </div>
+                </section>
+
+                <section class="panel" id="external-access">
+                    <h2>External Access</h2>
+                    <p>External Access is for reaching the local NekoBot setup or overlay endpoints from outside the default local browser flow. Keep it disabled unless you are deliberately exposing NekoBot to another device or network path.</p>
+                    <div class="token-table" role="table" aria-label="External access controls">
+                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it means</strong></div>
+                        <div role="row"><code role="cell">Enable external access</code><span role="cell">Allows the external-access path to be used. Treat this as an advanced/networking option.</span></div>
+                        <div role="row"><code role="cell">Password</code><span role="cell">Sets or changes the password used for external access. Leave blank when you want to keep the existing configured password.</span></div>
+                        <div role="row"><code role="cell">Password status</code><span role="cell">Shows whether NekoBot currently has an external-access password configured.</span></div>
                     </div>
                 </section>
 
                 <section class="panel" id="updates">
                     <h2>Updates</h2>
-                    <p>The update box checks GitHub Releases for a newer NekoBot build and can stage an update before restarting the app.</p>
+                    <p>The update box checks GitHub Releases for a newer NekoBot build and can stage an update before restarting the app. It also controls CUDA runtime download behavior for systems that use GPU-backed local models.</p>
                     <div class="token-table" role="table" aria-label="Update controls">
                         <div role="row"><strong role="cell">Control</strong><strong role="cell">What it does</strong></div>
                         <div role="row"><code role="cell">Check for update</code><span role="cell">Checks GitHub Releases for a newer public release.</span></div>
                         <div role="row"><code role="cell">Download update</code><span role="cell">Downloads and stages the newer release when one is available.</span></div>
                         <div role="row"><code role="cell">Apply and restart</code><span role="cell">Applies the staged update and restarts NekoBot. Use it when you are ready for the app to briefly stop and relaunch.</span></div>
+                        <div role="row"><code role="cell">Auto-download CUDA runtime</code><span role="cell">Lets NekoBot download the CUDA runtime pack when GPU support is needed.</span></div>
+                        <div role="row"><code role="cell">Auto-restart after CUDA install</code><span role="cell">Allows NekoBot to restart after CUDA runtime installation so the native files can load cleanly.</span></div>
                         <div role="row"><code role="cell">Update details</code><span role="cell">Shows release information returned by the update check.</span></div>
                     </div>
                 </section>
 
                 <section class="panel" id="logs">
                     <h2>Logs</h2>
-                    <p>Logs are daily files used to diagnose startup, Streamer.bot, overlay, source, TTS, and update problems. The viewer shows recent content from the selected log.</p>
+                    <p>Logs are daily files used to diagnose startup, connector, overlay, source, TTS, trigger, and update problems. The viewer shows recent content from the selected log.</p>
                     <div class="token-table" role="table" aria-label="Log viewer controls">
                         <div role="row"><strong role="cell">Control</strong><strong role="cell">Usage</strong></div>
+                        <div role="row"><code role="cell">General / Logs tabs</code><span role="cell">Switches between app settings and the log viewer without leaving the Settings page.</span></div>
+                        <div role="row"><code role="cell">Logging level</code><span role="cell">Controls log detail. Use <code>Verbose</code> while diagnosing a problem, then return to <code>Info</code> for normal use.</span></div>
                         <div role="row"><code role="cell">Log Files</code><span role="cell">Lists daily log files. Select one to load it into the viewer.</span></div>
                         <div role="row"><code role="cell">Refresh</code><span role="cell">Reloads the log file list and selected log content.</span></div>
                         <div role="row"><code role="cell">Collapse files</code><span role="cell">Hides or shows the log file sidebar when you want more room for the viewer.</span></div>
