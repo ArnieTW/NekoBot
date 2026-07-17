@@ -1,141 +1,15 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Manage Sources - Reusable Sources, Previews, Usage, and Cache Cleanup</title>
-    <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
-<!-- SEO -->
-    <meta name="description" content="Audit reusable NekoBot source definitions, inspect which overlay boxes use them, preview media, compare cached files, and clean up unused sources." />
-    <meta name="keywords" content="NekoBot, OBS overlay, Streamer.bot, streaming overlay, browser source, Twitch bot, stream effects, TTS, CosyVoice, media commands" />
-    <meta name="author" content="ArnieTW" />
-    <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/manage-sources.html" />
-    <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Manage Sources - Reusable Sources, Previews, Usage, and Cache Cleanup" />
-    <meta property="og:description" content="Audit reusable NekoBot source definitions, inspect which overlay boxes use them, preview media, compare cached files, and clean up unused sources." />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/manage-sources.html" />
-    <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Manage Sources - Reusable Sources, Previews, Usage, and Cache Cleanup" />
-    <meta name="twitter:description" content="Audit reusable NekoBot source definitions, inspect which overlay boxes use them, preview media, compare cached files, and clean up unused sources." />
-    <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
-    <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
-<!-- /SEO -->
-    <link rel="stylesheet" href="../styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="0; url=https://arnietw.github.io/NyankoBot/docs/manage-sources.html">
+  <link rel="canonical" href="https://arnietw.github.io/NyankoBot/docs/manage-sources.html">
+  <title>Moved to NyankoBot</title>
+  <script>window.location.replace('https://arnietw.github.io/NyankoBot/docs/manage-sources.html' + window.location.search + window.location.hash);</script>
 </head>
 <body>
-    <div class="page">
-        <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
-            <div class="nav-links">
-                <a href="index.html">Documentation</a>
-                <a href="../roadmap.html">Roadmap</a>
-                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
-                <a href="../releases/">Downloads</a>
-            </div>
-        </nav>
-
-        <main class="docs-layout">
-            <aside class="tree-nav" aria-label="Documentation navigation">
-                <nav class="tree-control" aria-label="Documentation tree">
-                    <a class="tree-item root" href="index.html">Overview</a>
-                    <a class="tree-item root" href="download-install.html">Download & Install</a>
-                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
-                    <div class="tree-group">
-                        <div class="tree-heading">Setup Pages</div>
-                        <a class="tree-item" href="overlay-setup.html">Overlay setup</a>
-                        <a class="tree-item" href="connectors.html">Connectors</a>
-                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
-                        <a class="tree-item" href="channel-rewards.html">Channel Rewards</a>
-                        <a class="tree-item" href="chat.html">Chat</a>
-                        <a class="tree-item" href="streamerbot.html">Streamer.bot Connector</a>
-                        <a class="tree-item" href="tts.html">CosyVoice TTS</a>
-                        <a class="tree-item active" href="manage-sources.html">Manage Sources</a>
-                        <a class="tree-item nested active" href="#defined-sources">Defined sources</a>
-                        <a class="tree-item nested" href="#usage">Usage</a>
-                        <a class="tree-item nested" href="#preview">Preview</a>
-                        <a class="tree-item nested" href="#cleanup">Cleanup</a>
-                        <a class="tree-item" href="settings.html">Settings</a>
-                    </div>
-                    <div class="tree-group">
-                        <div class="tree-heading">Components</div>
-                        <a class="tree-item" href="component-overlay.html">Overlay</a>
-                        <a class="tree-item" href="component-box.html">Box</a>
-                        <a class="tree-item" href="component-add-source-dialog.html">Add Source Dialog</a>
-                        <a class="tree-item" href="component-add-trigger.html">Add Trigger</a>
-                        <a class="tree-item" href="component-if-else-control.html">IF/Else Control</a>
-                        <a class="tree-item" href="component-argument-control.html">Argument Control</a>
-                    </div>
-                    <div class="tree-group">
-                        <div class="tree-heading">Examples</div>
-                        <a class="tree-item" href="examples.html#chat-text">Chat text</a>
-                        <a class="tree-item" href="examples.html#media-command">Media command</a>
-                        <a class="tree-item" href="examples.html#tts-message">TTS message</a>
-                        <a class="tree-item" href="examples.html#random-source">Random source</a>
-                        <a class="tree-item" href="examples.html#trigger-tokens">Trigger tokens</a>
-                    </div>
-                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
-                </nav>
-            </aside>
-
-            <article class="doc-content">
-                <section>
-                    <p class="kicker">Sources</p>
-                    <h1>Manage Sources</h1>
-                    <p class="lead">Manage Sources is the audit page for reusable source definitions, media previews, source usage, and cached files.</p>
-                </section>
-
-                <section class="panel" id="defined-sources">
-                    <h2>Defined Sources</h2>
-                    <img class="screenshot" src="../assets/screenshots/manage-sources.png" alt="Manage Sources page" />
-                    <p>Use this page when a reusable source needs to be checked outside the overlay editor. Sources are usually created from the <a href="component-add-source-dialog.html">Add Source Dialog</a>, then reused by boxes inside overlays.</p>
-                    <div class="token-table" role="table" aria-label="Manage Sources table controls">
-                        <div role="row"><strong role="cell">Column or control</strong><strong role="cell">What it means</strong></div>
-                        <div role="row"><code role="cell">Refresh</code><span role="cell">Reloads defined sources, overlay usage, and cache state from disk.</span></div>
-                        <div role="row"><code role="cell">Name</code><span role="cell">The reusable source label shown in source pickers and source lists.</span></div>
-                        <div role="row"><code role="cell">Type</code><span role="cell">The source family, such as text, media, URL, or TTS.</span></div>
-                        <div role="row"><code role="cell">Boxes</code><span role="cell">Shows how many overlay boxes reference the source. Click the count to inspect where it is used.</span></div>
-                        <div role="row"><code role="cell">Preview</code><span role="cell">Available for media-like sources. Opens a floating preview so you can test the source without editing an overlay.</span></div>
-                        <div role="row"><code role="cell">Actions</code><span role="cell">Shows cleanup actions such as deleting cached media or removing a reusable source definition.</span></div>
-                    </div>
-                </section>
-
-                <section class="panel" id="usage">
-                    <h2>Usage</h2>
-                    <p>The usage popover answers the question: which overlays and boxes still depend on this source?</p>
-                    <div class="token-table" role="table" aria-label="Source usage controls">
-                        <div role="row"><strong role="cell">Control</strong><strong role="cell">Usage</strong></div>
-                        <div role="row"><code role="cell">Boxes count</code><span role="cell">Opens the usage popover for that source.</span></div>
-                        <div role="row"><code role="cell">Source usage</code><span role="cell">Lists the overlays and boxes that reference the selected source.</span></div>
-                        <div role="row"><code role="cell">Close</code><span role="cell">Closes the floating usage panel and returns to the source table.</span></div>
-                    </div>
-                    <p>Check usage before deleting a source. Deleting a reusable source can leave existing boxes with local source data, but it removes the shared definition from future reuse.</p>
-                </section>
-
-                <section class="panel" id="preview">
-                    <h2>Preview</h2>
-                    <p>The preview popover renders the selected source and exposes enough settings to confirm whether the source itself is healthy before blaming OBS or trigger bindings.</p>
-                    <div class="token-table" role="table" aria-label="Source preview controls">
-                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it does</strong></div>
-                        <div role="row"><code role="cell">Preview</code><span role="cell">Opens a floating preview for the selected source.</span></div>
-                        <div role="row"><code role="cell">Regular / Cached</code><span role="cell">Switches between the original source URL and the cached file when both are available.</span></div>
-                        <div role="row"><code role="cell">Settings</code><span role="cell">Shows source metadata and render settings beside the preview.</span></div>
-                        <div role="row"><code role="cell">Preview body</code><span role="cell">Displays the source as NekoBot can render it: image, video, audio, URL, or other previewable media.</span></div>
-                    </div>
-                </section>
-
-                <section class="panel notice" id="cleanup">
-                    <h2>Cleanup</h2>
-                    <div class="token-table" role="table" aria-label="Source cleanup actions">
-                        <div role="row"><strong role="cell">Action</strong><strong role="cell">Effect</strong></div>
-                        <div role="row"><code role="cell">Delete Cache</code><span role="cell">Removes the cached copy for a remote media source. The source definition remains, but NekoBot may need to fetch the media again later.</span></div>
-                        <div role="row"><code role="cell">Delete Source</code><span role="cell">Deletes the reusable source definition after confirmation. Check source usage first.</span></div>
-                    </div>
-                </section>
-            </article>
-        </main>
-    </div>
-    <script src="../docs-nav.js"></script>
+  <p>This page moved to <a href="https://arnietw.github.io/NyankoBot/docs/manage-sources.html">NyankoBot</a>.</p>
 </body>
 </html>

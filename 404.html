@@ -1,0 +1,18 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <title>Moved to NyankoBot</title>
+  <script>
+    const next = new URL(window.location.href);
+    next.pathname = next.pathname.replace('/NekoBot/', '/NyankoBot/');
+    if (next.pathname === window.location.pathname) next.href = 'https://arnietw.github.io/NyankoBot/';
+    window.location.replace(next.href);
+  </script>
+</head>
+<body>
+  <p>This site moved to <a href="https://arnietw.github.io/NyankoBot/">NyankoBot</a>.</p>
+</body>
+</html>

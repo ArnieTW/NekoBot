@@ -1,96 +1,15 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NekoBot Channel Rewards - Shared Twitch and Kick Reward Setup</title>
-    <link rel="icon" type="image/png" href="../assets/ArnieTW_Mischevous.png" />
-    <meta name="description" content="Define shared NekoBot channel rewards once, then choose which Twitch or Kick connector should use each reward and price." />
-    <meta name="keywords" content="NekoBot channel rewards, Twitch rewards, Kick rewards, stream rewards, overlay triggers" />
-    <meta name="author" content="ArnieTW" />
-    <link rel="canonical" href="https://arnietw.github.io/NekoBot/docs/channel-rewards.html" />
-    <meta property="og:site_name" content="NekoBot" />
-    <meta property="og:title" content="NekoBot Channel Rewards - Shared Twitch and Kick Reward Setup" />
-    <meta property="og:description" content="Define shared NekoBot channel rewards once, then choose which Twitch or Kick connector should use each reward and price." />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://arnietw.github.io/NekoBot/docs/channel-rewards.html" />
-    <meta property="og:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="NekoBot Channel Rewards - Shared Twitch and Kick Reward Setup" />
-    <meta name="twitter:description" content="Define shared NekoBot channel rewards once, then choose which Twitch or Kick connector should use each reward and price." />
-    <meta name="twitter:image" content="https://arnietw.github.io/NekoBot/assets/ArnieTW_Mischevous.png" />
-    <link rel="sitemap" type="application/xml" href="../sitemap.xml" />
-    <link rel="stylesheet" href="../styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="0; url=https://arnietw.github.io/NyankoBot/docs/channel-rewards.html">
+  <link rel="canonical" href="https://arnietw.github.io/NyankoBot/docs/channel-rewards.html">
+  <title>Moved to NyankoBot</title>
+  <script>window.location.replace('https://arnietw.github.io/NyankoBot/docs/channel-rewards.html' + window.location.search + window.location.hash);</script>
 </head>
 <body>
-    <div class="page">
-        <nav class="nav" aria-label="Main navigation">
-            <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/ArnieTW_Mischevous.png" alt="" /><span>NekoBot</span></a>
-            <div class="nav-links">
-                <a href="index.html">Documentation</a>
-                <a href="../roadmap.html">Roadmap</a>
-                <a href="https://github.com/ArnieTW/NekoBot/issues">Issues</a>
-                <a href="../releases/">Downloads</a>
-            </div>
-        </nav>
-
-        <main class="docs-layout">
-            <aside class="tree-nav" aria-label="Documentation navigation">
-                <nav class="tree-control" aria-label="Documentation tree">
-                    <a class="tree-item root" href="index.html">Overview</a>
-                    <a class="tree-item root" href="quick-setup.html">Quick Setup</a>
-                    <div class="tree-group">
-                        <div class="tree-heading">Setup Pages</div>
-                        <a class="tree-item" href="connectors.html">Connectors</a>
-                        <a class="tree-item" href="command-triggers.html">Command Triggers</a>
-                        <a class="tree-item active" href="channel-rewards.html">Channel Rewards</a>
-                        <a class="tree-item nested active" href="#reward-list">Reward list</a>
-                        <a class="tree-item nested" href="#connector-rewards">Connector rewards</a>
-                        <a class="tree-item nested" href="#sync">Sync</a>
-                        <a class="tree-item" href="chat.html">Chat</a>
-                    </div>
-                    <a class="tree-item root" href="troubleshooting.html">Troubleshooting</a>
-                </nav>
-            </aside>
-
-            <article class="doc-content">
-                <section>
-                    <p class="kicker">Setup Page</p>
-                    <h1>Channel Rewards</h1>
-                    <p class="lead">Channel Rewards lets you define shared reward ideas once, then connect them to Twitch or Kick connector reward settings.</p>
-                </section>
-
-                <section class="panel" id="reward-list">
-                    <h2>Reward List</h2>
-                    <img class="screenshot" src="../assets/screenshots/channel-rewards.png" alt="NekoBot Channel Rewards setup page" />
-                    <p>Rewards are managed as NekoBot definitions first. A reward can then be attached to the supported platform connectors that should expose it.</p>
-                    <div class="token-table" role="table" aria-label="Channel reward controls">
-                        <div role="row"><strong role="cell">Control</strong><strong role="cell">What it does</strong></div>
-                        <div role="row"><code role="cell">New Reward</code><span role="cell">Creates a shared reward definition.</span></div>
-                        <div role="row"><code role="cell">Reward name</code><span role="cell">The viewer-facing reward title.</span></div>
-                        <div role="row"><code role="cell">Reward enabled</code><span role="cell">Controls whether this reward should be active.</span></div>
-                        <div role="row"><code role="cell">Save</code><span role="cell">Stores the NekoBot reward definition and connector-specific reward settings.</span></div>
-                    </div>
-                </section>
-
-                <section class="panel" id="connector-rewards">
-                    <h2>Connector Rewards</h2>
-                    <p>Connector Rewards is where a shared reward is mapped to Twitch or Kick connector instances, including the connector-specific price or sync behavior.</p>
-                    <ul>
-                        <li>Configure <a href="connectors.html">Connectors</a> before expecting connector reward rows to appear.</li>
-                        <li>Use one shared reward when the same idea should exist on multiple platforms.</li>
-                        <li>Use connector-specific values when Twitch and Kick need different pricing or availability.</li>
-                    </ul>
-                </section>
-
-                <section class="panel" id="sync">
-                    <h2>Sync</h2>
-                    <p>Sync pushes or refreshes the reward state for a supported connector. Use it after saving a reward when the platform-side copy needs to be created or updated.</p>
-                    <p>Reward-triggered behavior is handled through <a href="command-triggers.html">Command Triggers</a>, which can bind the reward event to overlay boxes or actions.</p>
-                </section>
-            </article>
-        </main>
-    </div>
-    <script src="../docs-nav.js"></script>
+  <p>This page moved to <a href="https://arnietw.github.io/NyankoBot/docs/channel-rewards.html">NyankoBot</a>.</p>
 </body>
 </html>
